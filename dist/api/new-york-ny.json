@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "New York",
+    "state": "NY",
+    "coordinates": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "timezone": "America/New_York"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T10:46:53.268Z",
+    "sunset": "2025-09-24T22:51:41.536Z",
+    "solarNoon": "2025-09-24T16:49:17.402Z",
+    "daylightHours": 12.080074444444444,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T10:19:35.652Z",
+    "civilDusk": "2025-09-24T23:18:59.151Z",
+    "nauticalDawn": "2025-09-24T09:47:40.652Z",
+    "nauticalDusk": "2025-09-24T23:50:54.152Z",
+    "astronomicalDawn": "2025-09-24T09:15:13.612Z",
+    "astronomicalDusk": "2025-09-25T00:23:21.192Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

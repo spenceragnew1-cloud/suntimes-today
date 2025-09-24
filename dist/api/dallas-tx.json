@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Dallas",
+    "state": "TX",
+    "coordinates": {
+      "latitude": 32.7767,
+      "longitude": -96.797
+    },
+    "timezone": "America/Chicago"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T12:17:58.965Z",
+    "sunset": "2025-09-25T00:22:55.519Z",
+    "solarNoon": "2025-09-24T18:20:27.242Z",
+    "daylightHours": 12.082376111111111,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T11:53:23.337Z",
+    "civilDusk": "2025-09-25T00:47:31.147Z",
+    "nauticalDawn": "2025-09-24T11:24:43.340Z",
+    "nauticalDusk": "2025-09-25T01:16:11.143Z",
+    "astronomicalDawn": "2025-09-24T10:55:47.822Z",
+    "astronomicalDusk": "2025-09-25T01:45:06.661Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

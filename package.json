@@ -1,0 +1,26 @@
+{
+  "name": "suntimes-today",
+  "version": "1.0.0",
+  "description": "Automated sunrise/sunset calculator with programmatic SEO",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "build": "node scripts/build-all.js",
+    "generate": "claude run scripts/generate-pages.claude",
+    "daily": "claude run scripts/daily-update.claude",
+    "deploy": "node scripts/deploy.js"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "live-server": "^1.2.2"
+  },
+  "keywords": ["sunrise", "sunset", "solar", "automation", "seo"],
+  "author": "Claude Code Assistant",
+  "license": "MIT"
+}

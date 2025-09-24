@@ -1,0 +1,26 @@
+# Generate SunTimes Pages
+# This script generates static pages for different locations and dates
+
+Generate comprehensive sunrise/sunset pages for major cities worldwide.
+
+For each location, create:
+1. Today's sunrise/sunset times
+2. Monthly calendar view
+3. Annual sunrise/sunset charts
+4. Location-specific SEO content
+
+Cities to process:
+- New York, NY
+- Los Angeles, CA
+- London, UK
+- Tokyo, Japan
+- Sydney, Australia
+- Paris, France
+- Berlin, Germany
+- Mumbai, India
+- São Paulo, Brazil
+- Mexico City, Mexico
+
+Use the handlebars templates in src/templates/ and save output to public/locations/
+
+Include meta tags, structured data, and optimized content for each page.

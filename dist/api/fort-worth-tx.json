@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Fort Worth",
+    "state": "TX",
+    "coordinates": {
+      "latitude": 32.7555,
+      "longitude": -97.3308
+    },
+    "timezone": "America/Chicago"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T12:20:07.061Z",
+    "sunset": "2025-09-25T00:25:03.647Z",
+    "solarNoon": "2025-09-24T18:22:35.354Z",
+    "daylightHours": 12.082385,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T11:55:31.786Z",
+    "civilDusk": "2025-09-25T00:49:38.922Z",
+    "nauticalDawn": "2025-09-24T11:26:52.212Z",
+    "nauticalDusk": "2025-09-25T01:18:18.496Z",
+    "astronomicalDawn": "2025-09-24T10:57:57.147Z",
+    "astronomicalDusk": "2025-09-25T01:47:13.561Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.918Z"
+}

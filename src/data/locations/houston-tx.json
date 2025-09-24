@@ -1,0 +1,31 @@
+{
+  "name": "Houston",
+  "state": "Texas",
+  "stateCode": "TX",
+  "country": "United States",
+  "latitude": 29.7604,
+  "longitude": -95.3698,
+  "timezone": "America/Chicago",
+  "population": 2320268,
+  "elevation": 13,
+  "metro": "Houston-The Woodlands-Sugar Land",
+  "keywords": [
+    "Space City",
+    "H-Town",
+    "Bayou City",
+    "Clutch City"
+  ],
+  "attractions": [
+    "Space Center Houston",
+    "Museum District",
+    "Buffalo Bayou Park",
+    "Houston Zoo"
+  ],
+  "photoSpots": [
+    "Buffalo Bayou Park",
+    "Eleanor Tinsley Park",
+    "Hermann Park",
+    "Discovery Green"
+  ],
+  "description": "Houston's flat terrain and bayou system create unique sunrise and sunset viewing opportunities across this sprawling Texas metropolis."
+}

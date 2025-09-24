@@ -1,0 +1,30 @@
+{
+  "name": "Jacksonville",
+  "state": "Florida",
+  "stateCode": "FL",
+  "country": "United States",
+  "latitude": 30.3322,
+  "longitude": -81.6557,
+  "timezone": "America/New_York",
+  "population": 949611,
+  "elevation": 5,
+  "metro": "Jacksonville",
+  "keywords": [
+    "River City",
+    "Jax",
+    "First Coast"
+  ],
+  "attractions": [
+    "Jacksonville Beach",
+    "Cummer Museum",
+    "Riverside Arts Market"
+  ],
+  "photoSpots": [
+    "Jacksonville Beach",
+    "Neptune Beach",
+    "St. Johns River",
+    "Kingsley Plantation",
+    "Fort George Island"
+  ],
+  "description": "Jacksonville's Atlantic coastline and St. Johns River provide diverse locations for both ocean sunrise and river sunset viewing."
+}

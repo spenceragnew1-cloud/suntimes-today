@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Charlotte",
+    "state": "NC",
+    "coordinates": {
+      "latitude": 35.2271,
+      "longitude": -80.8431
+    },
+    "timezone": "America/New_York"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T11:14:11.721Z",
+    "sunset": "2025-09-24T23:19:04.890Z",
+    "solarNoon": "2025-09-24T17:16:38.306Z",
+    "daylightHours": 12.081435833333334,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T10:48:52.705Z",
+    "civilDusk": "2025-09-24T23:44:23.907Z",
+    "nauticalDawn": "2025-09-24T10:19:20.668Z",
+    "nauticalDusk": "2025-09-25T00:13:55.943Z",
+    "astronomicalDawn": "2025-09-24T09:49:29.179Z",
+    "astronomicalDusk": "2025-09-25T00:43:47.433Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.918Z"
+}

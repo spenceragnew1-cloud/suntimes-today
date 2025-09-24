@@ -1,0 +1,30 @@
+{
+  "name": "San Diego",
+  "state": "California",
+  "stateCode": "CA",
+  "country": "United States",
+  "latitude": 32.7157,
+  "longitude": -117.1611,
+  "timezone": "America/Los_Angeles",
+  "population": 1423851,
+  "elevation": 62,
+  "metro": "San Diego-Carlsbad",
+  "keywords": [
+    "America's Finest City",
+    "Birthplace of California"
+  ],
+  "attractions": [
+    "Balboa Park",
+    "USS Midway Museum",
+    "La Jolla Cove",
+    "Sunset Cliffs"
+  ],
+  "photoSpots": [
+    "Sunset Cliffs",
+    "La Jolla Cove",
+    "Torrey Pines",
+    "Mission Beach",
+    "Cabrillo National Monument"
+  ],
+  "description": "San Diego's 70 miles of coastline offer some of California's most spectacular sunrise and sunset viewing locations."
+}

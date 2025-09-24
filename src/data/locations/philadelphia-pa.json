@@ -1,0 +1,31 @@
+{
+  "name": "Philadelphia",
+  "state": "Pennsylvania",
+  "stateCode": "PA",
+  "country": "United States",
+  "latitude": 39.9526,
+  "longitude": -75.1652,
+  "timezone": "America/New_York",
+  "population": 1584064,
+  "elevation": 12,
+  "metro": "Philadelphia-Camden-Wilmington",
+  "keywords": [
+    "Philly",
+    "City of Brotherly Love",
+    "Cradle of Liberty"
+  ],
+  "attractions": [
+    "Independence Hall",
+    "Liberty Bell",
+    "Art Museum",
+    "Reading Terminal Market"
+  ],
+  "photoSpots": [
+    "Art Museum Steps",
+    "Penn's Landing",
+    "Belmont Plateau",
+    "Kelly Drive",
+    "Race Street Pier"
+  ],
+  "description": "Philadelphia's historic waterfront along the Delaware and Schuylkill rivers offers beautiful sunrise and sunset views with iconic city backdrops."
+}

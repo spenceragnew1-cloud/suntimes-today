@@ -1,0 +1,35 @@
+{
+  "name": "Los Angeles",
+  "state": "California",
+  "stateCode": "CA",
+  "country": "United States",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "timezone": "America/Los_Angeles",
+  "population": 3979576,
+  "elevation": 87,
+  "metro": "Los Angeles-Long Beach-Anaheim",
+  "keywords": [
+    "LA",
+    "City of Angels",
+    "Hollywood",
+    "Beverly Hills",
+    "Venice",
+    "Santa Monica"
+  ],
+  "attractions": [
+    "Hollywood Sign",
+    "Griffith Observatory",
+    "Santa Monica Pier",
+    "Getty Center",
+    "Venice Beach"
+  ],
+  "photoSpots": [
+    "Griffith Observatory",
+    "Manhattan Beach Pier",
+    "El Matador Beach",
+    "Angeles National Forest",
+    "Palos Verdes"
+  ],
+  "description": "Famous for its golden hour lighting and dramatic Pacific Ocean sunsets, LA provides endless opportunities for sunrise and sunset photography."
+}

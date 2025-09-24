@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Los Angeles",
+    "state": "CA",
+    "coordinates": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "timezone": "America/Los_Angeles"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T13:43:47.097Z",
+    "sunset": "2025-09-25T01:48:41.803Z",
+    "solarNoon": "2025-09-24T19:46:14.450Z",
+    "daylightHours": 12.081862777777777,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T13:18:49.543Z",
+    "civilDusk": "2025-09-25T02:13:39.357Z",
+    "nauticalDawn": "2025-09-24T12:49:43.264Z",
+    "nauticalDusk": "2025-09-25T02:42:45.635Z",
+    "astronomicalDawn": "2025-09-24T12:20:19.521Z",
+    "astronomicalDusk": "2025-09-25T03:12:09.379Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

@@ -1,0 +1,352 @@
+// scripts/generate-location-data.js
+// Location data generator for major US cities
+
+const fs = require('fs').promises;
+const path = require('path');
+
+// Top 25 US cities with comprehensive data for SEO
+const locationData = {
+  "new-york-ny": {
+    name: "New York",
+    state: "New York",
+    stateCode: "NY",
+    country: "United States",
+    latitude: 40.7128,
+    longitude: -74.0060,
+    timezone: "America/New_York",
+    population: 8336817,
+    elevation: 33,
+    metro: "New York-Newark-Jersey City",
+    keywords: ["NYC", "Big Apple", "Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"],
+    attractions: ["Central Park", "Times Square", "Brooklyn Bridge", "Statue of Liberty", "Empire State Building"],
+    photoSpots: ["Brooklyn Bridge Park", "Top of the Rock", "High Line", "DUMBO", "Roosevelt Island"],
+    description: "The largest city in the United States offers stunning sunrise views over the East River and spectacular sunsets along the Hudson River waterfront."
+  },
+  "los-angeles-ca": {
+    name: "Los Angeles",
+    state: "California",
+    stateCode: "CA",
+    country: "United States",
+    latitude: 34.0522,
+    longitude: -118.2437,
+    timezone: "America/Los_Angeles",
+    population: 3979576,
+    elevation: 87,
+    metro: "Los Angeles-Long Beach-Anaheim",
+    keywords: ["LA", "City of Angels", "Hollywood", "Beverly Hills", "Venice", "Santa Monica"],
+    attractions: ["Hollywood Sign", "Griffith Observatory", "Santa Monica Pier", "Getty Center", "Venice Beach"],
+    photoSpots: ["Griffith Observatory", "Manhattan Beach Pier", "El Matador Beach", "Angeles National Forest", "Palos Verdes"],
+    description: "Famous for its golden hour lighting and dramatic Pacific Ocean sunsets, LA provides endless opportunities for sunrise and sunset photography."
+  },
+  "chicago-il": {
+    name: "Chicago",
+    state: "Illinois",
+    stateCode: "IL",
+    country: "United States",
+    latitude: 41.8781,
+    longitude: -87.6298,
+    timezone: "America/Chicago",
+    population: 2693976,
+    elevation: 181,
+    metro: "Chicago-Naperville-Elgin",
+    keywords: ["Windy City", "Chi-town", "Second City", "City of Big Shoulders"],
+    attractions: ["Millennium Park", "Navy Pier", "Art Institute", "Willis Tower", "Lincoln Park Zoo"],
+    photoSpots: ["North Avenue Beach", "Lakefront Trail", "Montrose Harbor", "Oak Street Beach", "31st Street Beach"],
+    description: "Chicago's lakefront provides magnificent sunrise views over Lake Michigan and beautiful sunset reflections across the city skyline."
+  },
+  "houston-tx": {
+    name: "Houston",
+    state: "Texas",
+    stateCode: "TX",
+    country: "United States",
+    latitude: 29.7604,
+    longitude: -95.3698,
+    timezone: "America/Chicago",
+    population: 2320268,
+    elevation: 13,
+    metro: "Houston-The Woodlands-Sugar Land",
+    keywords: ["Space City", "H-Town", "Bayou City", "Clutch City"],
+    attractions: ["Space Center Houston", "Museum District", "Buffalo Bayou Park", "Houston Zoo"],
+    photoSpots: ["Buffalo Bayou Park", "Eleanor Tinsley Park", "Hermann Park", "Discovery Green"],
+    description: "Houston's flat terrain and bayou system create unique sunrise and sunset viewing opportunities across this sprawling Texas metropolis."
+  },
+  "phoenix-az": {
+    name: "Phoenix",
+    state: "Arizona",
+    stateCode: "AZ",
+    country: "United States",
+    latitude: 33.4484,
+    longitude: -112.0740,
+    timezone: "America/Phoenix",
+    population: 1680992,
+    elevation: 331,
+    metro: "Phoenix-Mesa-Scottsdale",
+    keywords: ["Valley of the Sun", "Desert City"],
+    attractions: ["Desert Botanical Garden", "Camelback Mountain", "Papago Park", "South Mountain Park"],
+    photoSpots: ["South Mountain Park", "Camelback Mountain", "Papago Park", "Tempe Town Lake", "McDowell Mountain"],
+    description: "The Sonoran Desert surrounding Phoenix creates dramatic silhouettes and vibrant colors during sunrise and sunset hours."
+  },
+  "philadelphia-pa": {
+    name: "Philadelphia",
+    state: "Pennsylvania",
+    stateCode: "PA",
+    country: "United States",
+    latitude: 39.9526,
+    longitude: -75.1652,
+    timezone: "America/New_York",
+    population: 1584064,
+    elevation: 12,
+    metro: "Philadelphia-Camden-Wilmington",
+    keywords: ["Philly", "City of Brotherly Love", "Cradle of Liberty"],
+    attractions: ["Independence Hall", "Liberty Bell", "Art Museum", "Reading Terminal Market"],
+    photoSpots: ["Art Museum Steps", "Penn's Landing", "Belmont Plateau", "Kelly Drive", "Race Street Pier"],
+    description: "Philadelphia's historic waterfront along the Delaware and Schuylkill rivers offers beautiful sunrise and sunset views with iconic city backdrops."
+  },
+  "san-antonio-tx": {
+    name: "San Antonio",
+    state: "Texas",
+    stateCode: "TX",
+    country: "United States",
+    latitude: 29.4241,
+    longitude: -98.4936,
+    timezone: "America/Chicago",
+    population: 1547253,
+    elevation: 198,
+    metro: "San Antonio-New Braunfels",
+    keywords: ["Alamo City", "Military City USA"],
+    attractions: ["The Alamo", "River Walk", "San Antonio Missions", "Pearl District"],
+    photoSpots: ["San Antonio River Walk", "Brackenridge Park", "Japanese Tea Garden", "Mission San José"],
+    description: "San Antonio's River Walk and historic missions provide unique settings for capturing sunrise and sunset moments in South Texas."
+  },
+  "san-diego-ca": {
+    name: "San Diego",
+    state: "California",
+    stateCode: "CA",
+    country: "United States",
+    latitude: 32.7157,
+    longitude: -117.1611,
+    timezone: "America/Los_Angeles",
+    population: 1423851,
+    elevation: 62,
+    metro: "San Diego-Carlsbad",
+    keywords: ["America's Finest City", "Birthplace of California"],
+    attractions: ["Balboa Park", "USS Midway Museum", "La Jolla Cove", "Sunset Cliffs"],
+    photoSpots: ["Sunset Cliffs", "La Jolla Cove", "Torrey Pines", "Mission Beach", "Cabrillo National Monument"],
+    description: "San Diego's 70 miles of coastline offer some of California's most spectacular sunrise and sunset viewing locations."
+  },
+  "dallas-tx": {
+    name: "Dallas",
+    state: "Texas",
+    stateCode: "TX",
+    country: "United States",
+    latitude: 32.7767,
+    longitude: -96.7970,
+    timezone: "America/Chicago",
+    population: 1343573,
+    elevation: 131,
+    metro: "Dallas-Fort Worth-Arlington",
+    keywords: ["Big D", "D-Town"],
+    attractions: ["Sixth Floor Museum", "Dallas Arts District", "Fair Park", "Deep Ellum"],
+    photoSpots: ["White Rock Lake", "Trinity River Audubon Center", "Fair Park", "Klyde Warren Park"],
+    description: "Dallas's urban lakes and the Trinity River corridor provide excellent vantage points for sunrise and sunset photography in North Texas."
+  },
+  "san-jose-ca": {
+    name: "San Jose",
+    state: "California",
+    stateCode: "CA",
+    country: "United States",
+    latitude: 37.3382,
+    longitude: -121.8863,
+    timezone: "America/Los_Angeles",
+    population: 1021795,
+    elevation: 25,
+    metro: "San Jose-Sunnyvale-Santa Clara",
+    keywords: ["Capital of Silicon Valley", "Tech Capital"],
+    attractions: ["Tech Interactive", "Municipal Rose Garden", "Winchester Mystery House"],
+    photoSpots: ["Alum Rock Park", "Communications Hill", "Guadalupe River Trail", "Almaden Quicksilver Park"],
+    description: "San Jose's location in the Santa Clara Valley provides mountain backdrops and bay views for dramatic sunrise and sunset scenes."
+  },
+  "austin-tx": {
+    name: "Austin",
+    state: "Texas",
+    stateCode: "TX",
+    country: "United States",
+    latitude: 30.2672,
+    longitude: -97.7431,
+    timezone: "America/Chicago",
+    population: 978908,
+    elevation: 149,
+    metro: "Austin-Round Rock",
+    keywords: ["Keep Austin Weird", "Live Music Capital", "ATX"],
+    attractions: ["State Capitol", "Lady Bird Lake", "South by Southwest", "Austin City Limits"],
+    photoSpots: ["Mount Bonnell", "Lady Bird Lake", "Zilker Park", "360 Bridge", "Pennybacker Bridge"],
+    description: "Austin's hill country location and Lady Bird Lake create perfect settings for capturing Texas sunrises and sunsets."
+  },
+  "jacksonville-fl": {
+    name: "Jacksonville",
+    state: "Florida",
+    stateCode: "FL",
+    country: "United States",
+    latitude: 30.3322,
+    longitude: -81.6557,
+    timezone: "America/New_York",
+    population: 949611,
+    elevation: 5,
+    metro: "Jacksonville",
+    keywords: ["River City", "Jax", "First Coast"],
+    attractions: ["Jacksonville Beach", "Cummer Museum", "Riverside Arts Market"],
+    photoSpots: ["Jacksonville Beach", "Neptune Beach", "St. Johns River", "Kingsley Plantation", "Fort George Island"],
+    description: "Jacksonville's Atlantic coastline and St. Johns River provide diverse locations for both ocean sunrise and river sunset viewing."
+  },
+  "fort-worth-tx": {
+    name: "Fort Worth",
+    state: "Texas",
+    stateCode: "TX",
+    country: "United States",
+    latitude: 32.7555,
+    longitude: -97.3308,
+    timezone: "America/Chicago",
+    population: 918915,
+    elevation: 203,
+    metro: "Dallas-Fort Worth-Arlington",
+    keywords: ["Cowtown", "Where the West Begins"],
+    attractions: ["Stockyards National Historic District", "Kimbell Art Museum", "Fort Worth Zoo"],
+    photoSpots: ["Trinity River", "Fort Worth Nature Center", "Eagle Mountain Lake", "Benbrook Lake"],
+    description: "Fort Worth's western heritage landscape and Trinity River provide authentic Texas settings for sunrise and sunset photography."
+  },
+  "columbus-oh": {
+    name: "Columbus",
+    state: "Ohio",
+    stateCode: "OH",
+    country: "United States",
+    latitude: 39.9612,
+    longitude: -82.9988,
+    timezone: "America/New_York",
+    population: 898553,
+    elevation: 260,
+    metro: "Columbus",
+    keywords: ["C-Bus", "Arch City"],
+    attractions: ["Ohio State University", "German Village", "COSI", "Franklin Park Conservatory"],
+    photoSpots: ["Scioto Mile", "Griggs Reservoir", "Antrim Park", "Highbanks Metro Park"],
+    description: "Columbus's Scioto River corridor and surrounding reservoirs offer peaceful settings for Midwest sunrise and sunset viewing."
+  },
+  "charlotte-nc": {
+    name: "Charlotte",
+    state: "North Carolina",
+    stateCode: "NC",
+    country: "United States",
+    latitude: 35.2271,
+    longitude: -80.8431,
+    timezone: "America/New_York",
+    population: 885708,
+    elevation: 229,
+    metro: "Charlotte-Concord-Gastonia",
+    keywords: ["Queen City", "QC"],
+    attractions: ["NASCAR Hall of Fame", "Freedom Park", "Levine Museum", "Mint Museum"],
+    photoSpots: ["Lake Norman", "Freedom Park", "Romare Bearden Park", "Crowders Mountain", "McDowell Nature Center"],
+    description: "Charlotte's piedmont location and nearby lakes create beautiful opportunities for capturing Southern sunrise and sunset scenes."
+  }
+};
+
+/**
+ * Generate location data files for the SunTimes application
+ * @returns {Promise<Object>} Generated location data
+ */
+async function generateLocationData() {
+  try {
+    // Ensure data directory exists
+    const dataDir = path.join(__dirname, '../src/data');
+    await fs.mkdir(dataDir, { recursive: true });
+
+    // Write main locations file
+    const locationsPath = path.join(dataDir, 'locations.json');
+    await fs.writeFile(locationsPath, JSON.stringify(locationData, null, 2));
+
+    // Generate individual location files for easier processing
+    const individualsDir = path.join(dataDir, 'locations');
+    await fs.mkdir(individualsDir, { recursive: true });
+
+    for (const [slug, data] of Object.entries(locationData)) {
+      const individualPath = path.join(individualsDir, `${slug}.json`);
+      await fs.writeFile(individualPath, JSON.stringify(data, null, 2));
+    }
+
+    // Generate summary statistics
+    const stats = {
+      totalLocations: Object.keys(locationData).length,
+      totalPopulation: Object.values(locationData).reduce((sum, loc) => sum + loc.population, 0),
+      states: [...new Set(Object.values(locationData).map(loc => loc.stateCode))].sort(),
+      timezones: [...new Set(Object.values(locationData).map(loc => loc.timezone))].sort(),
+      averageLatitude: Object.values(locationData).reduce((sum, loc) => sum + loc.latitude, 0) / Object.keys(locationData).length,
+      averageLongitude: Object.values(locationData).reduce((sum, loc) => sum + loc.longitude, 0) / Object.keys(locationData).length,
+      elevationRange: {
+        min: Math.min(...Object.values(locationData).map(loc => loc.elevation)),
+        max: Math.max(...Object.values(locationData).map(loc => loc.elevation))
+      }
+    };
+
+    const statsPath = path.join(dataDir, 'location-stats.json');
+    await fs.writeFile(statsPath, JSON.stringify(stats, null, 2));
+
+    console.log('✅ Location data generated successfully!');
+    console.log(`📍 Generated ${stats.totalLocations} locations`);
+    console.log(`🏙️ Total population: ${stats.totalPopulation.toLocaleString()}`);
+    console.log(`🗺️ Coverage: ${stats.states.length} states, ${stats.timezones.length} timezones`);
+    console.log(`📊 Individual files: ${individualsDir}`);
+    console.log(`📈 Statistics: ${statsPath}`);
+
+    return { locationData, stats };
+
+  } catch (error) {
+    console.error('❌ Error generating location data:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get location data by slug
+ * @param {string} slug - Location slug (e.g., "new-york-ny")
+ * @returns {Object|null} Location data or null if not found
+ */
+function getLocationBySlug(slug) {
+  return locationData[slug] || null;
+}
+
+/**
+ * Search locations by various criteria
+ * @param {Object} criteria - Search criteria
+ * @returns {Array} Array of matching locations
+ */
+function searchLocations(criteria = {}) {
+  const results = [];
+
+  for (const [slug, location] of Object.entries(locationData)) {
+    let matches = true;
+
+    if (criteria.state && location.stateCode !== criteria.state) matches = false;
+    if (criteria.minPopulation && location.population < criteria.minPopulation) matches = false;
+    if (criteria.maxPopulation && location.population > criteria.maxPopulation) matches = false;
+    if (criteria.timezone && location.timezone !== criteria.timezone) matches = false;
+    if (criteria.keyword && !location.keywords.some(k =>
+      k.toLowerCase().includes(criteria.keyword.toLowerCase()))) matches = false;
+
+    if (matches) {
+      results.push({ slug, ...location });
+    }
+  }
+
+  return results;
+}
+
+// Export functions and data
+module.exports = {
+  generateLocationData,
+  getLocationBySlug,
+  searchLocations,
+  locationData
+};
+
+// Run if called directly
+if (require.main === module) {
+  generateLocationData().catch(console.error);
+}

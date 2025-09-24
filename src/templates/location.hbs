@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Sunrise & Sunset Times</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="sunrise, sunset, {{location.name}}, solar times, daylight hours">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suntimes.today/locations/{{location.slug}}">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Place",
+      "name": "{{location.name}}",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": {{location.coordinates.lat}},
+        "longitude": {{location.coordinates.lng}}
+      },
+      "description": "Sunrise and sunset times for {{location.name}}"
+    }
+    </script>
+
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🌅 SunTimes Today</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/locations">Locations</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="location-header">
+            <h2>{{location.name}}</h2>
+            <p class="coordinates">{{location.coordinates.lat}}°, {{location.coordinates.lng}}°</p>
+        </div>
+
+        <div class="current-times">
+            <div class="time-card sunrise">
+                <h3>🌅 Sunrise</h3>
+                <time class="time">{{currentTimes.sunrise}}</time>
+                <p class="date">{{currentTimes.date}}</p>
+            </div>
+
+            <div class="time-card sunset">
+                <h3>🌇 Sunset</h3>
+                <time class="time">{{currentTimes.sunset}}</time>
+                <p class="date">{{currentTimes.date}}</p>
+            </div>
+
+            <div class="time-card daylight">
+                <h3>☀️ Daylight</h3>
+                <span class="duration">{{currentTimes.daylightHours}}</span>
+                <p class="label">hours</p>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <a href="today" class="btn">Today's Times</a>
+            <a href="monthly" class="btn">Monthly View</a>
+            <a href="yearly" class="btn">Yearly Chart</a>
+        </div>
+
+        <section class="location-info">
+            <h3>About {{location.name}}</h3>
+            <p>{{location.description}}</p>
+
+            <div class="facts">
+                <div class="fact">
+                    <strong>Timezone:</strong> {{location.timezone}}
+                </div>
+                <div class="fact">
+                    <strong>Population:</strong> {{location.population}}
+                </div>
+                <div class="fact">
+                    <strong>Best viewing:</strong> {{location.bestViewing}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SunTimes Today. Accurate sunrise and sunset times worldwide.</p>
+    </footer>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

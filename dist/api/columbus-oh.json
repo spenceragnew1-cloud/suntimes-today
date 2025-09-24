@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Columbus",
+    "state": "OH",
+    "coordinates": {
+      "latitude": 39.9612,
+      "longitude": -82.9988
+    },
+    "timezone": "America/New_York"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T11:22:51.323Z",
+    "sunset": "2025-09-24T23:27:40.025Z",
+    "solarNoon": "2025-09-24T17:25:15.674Z",
+    "daylightHours": 12.080195,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T10:55:51.943Z",
+    "civilDusk": "2025-09-24T23:54:39.405Z",
+    "nauticalDawn": "2025-09-24T10:24:18.994Z",
+    "nauticalDusk": "2025-09-25T00:26:12.353Z",
+    "astronomicalDawn": "2025-09-24T09:52:16.126Z",
+    "astronomicalDusk": "2025-09-25T00:58:15.222Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.918Z"
+}

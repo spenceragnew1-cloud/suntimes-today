@@ -1,0 +1,31 @@
+{
+  "name": "Austin",
+  "state": "Texas",
+  "stateCode": "TX",
+  "country": "United States",
+  "latitude": 30.2672,
+  "longitude": -97.7431,
+  "timezone": "America/Chicago",
+  "population": 978908,
+  "elevation": 149,
+  "metro": "Austin-Round Rock",
+  "keywords": [
+    "Keep Austin Weird",
+    "Live Music Capital",
+    "ATX"
+  ],
+  "attractions": [
+    "State Capitol",
+    "Lady Bird Lake",
+    "South by Southwest",
+    "Austin City Limits"
+  ],
+  "photoSpots": [
+    "Mount Bonnell",
+    "Lady Bird Lake",
+    "Zilker Park",
+    "360 Bridge",
+    "Pennybacker Bridge"
+  ],
+  "description": "Austin's hill country location and Lady Bird Lake create perfect settings for capturing Texas sunrises and sunsets."
+}

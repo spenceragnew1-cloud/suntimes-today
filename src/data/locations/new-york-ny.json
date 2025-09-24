@@ -1,0 +1,36 @@
+{
+  "name": "New York",
+  "state": "New York",
+  "stateCode": "NY",
+  "country": "United States",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "timezone": "America/New_York",
+  "population": 8336817,
+  "elevation": 33,
+  "metro": "New York-Newark-Jersey City",
+  "keywords": [
+    "NYC",
+    "Big Apple",
+    "Manhattan",
+    "Brooklyn",
+    "Queens",
+    "Bronx",
+    "Staten Island"
+  ],
+  "attractions": [
+    "Central Park",
+    "Times Square",
+    "Brooklyn Bridge",
+    "Statue of Liberty",
+    "Empire State Building"
+  ],
+  "photoSpots": [
+    "Brooklyn Bridge Park",
+    "Top of the Rock",
+    "High Line",
+    "DUMBO",
+    "Roosevelt Island"
+  ],
+  "description": "The largest city in the United States offers stunning sunrise views over the East River and spectacular sunsets along the Hudson River waterfront."
+}

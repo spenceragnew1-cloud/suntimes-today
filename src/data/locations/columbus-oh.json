@@ -1,0 +1,29 @@
+{
+  "name": "Columbus",
+  "state": "Ohio",
+  "stateCode": "OH",
+  "country": "United States",
+  "latitude": 39.9612,
+  "longitude": -82.9988,
+  "timezone": "America/New_York",
+  "population": 898553,
+  "elevation": 260,
+  "metro": "Columbus",
+  "keywords": [
+    "C-Bus",
+    "Arch City"
+  ],
+  "attractions": [
+    "Ohio State University",
+    "German Village",
+    "COSI",
+    "Franklin Park Conservatory"
+  ],
+  "photoSpots": [
+    "Scioto Mile",
+    "Griggs Reservoir",
+    "Antrim Park",
+    "Highbanks Metro Park"
+  ],
+  "description": "Columbus's Scioto River corridor and surrounding reservoirs offer peaceful settings for Midwest sunrise and sunset viewing."
+}

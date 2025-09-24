@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Jacksonville",
+    "state": "FL",
+    "coordinates": {
+      "latitude": 30.3322,
+      "longitude": -81.6557
+    },
+    "timezone": "America/New_York"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T11:17:23.033Z",
+    "sunset": "2025-09-24T23:22:23.627Z",
+    "solarNoon": "2025-09-24T17:19:53.330Z",
+    "daylightHours": 12.083498333333333,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T10:53:25.723Z",
+    "civilDusk": "2025-09-24T23:46:20.937Z",
+    "nauticalDawn": "2025-09-24T10:25:31.574Z",
+    "nauticalDusk": "2025-09-25T00:14:15.085Z",
+    "astronomicalDawn": "2025-09-24T09:57:25.095Z",
+    "astronomicalDusk": "2025-09-25T00:42:21.565Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

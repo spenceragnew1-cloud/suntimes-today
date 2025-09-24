@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "San Diego",
+    "state": "CA",
+    "coordinates": {
+      "latitude": 32.7157,
+      "longitude": -117.1611
+    },
+    "timezone": "America/Los_Angeles"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T13:39:26.303Z",
+    "sunset": "2025-09-25T01:44:22.949Z",
+    "solarNoon": "2025-09-24T19:41:54.626Z",
+    "daylightHours": 12.082401666666666,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T13:14:51.689Z",
+    "civilDusk": "2025-09-25T02:08:57.563Z",
+    "nauticalDawn": "2025-09-24T12:46:12.907Z",
+    "nauticalDusk": "2025-09-25T02:37:36.345Z",
+    "astronomicalDawn": "2025-09-24T12:17:18.691Z",
+    "astronomicalDusk": "2025-09-25T03:06:30.560Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

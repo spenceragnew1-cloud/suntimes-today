@@ -1,0 +1,29 @@
+{
+  "name": "suntimes-today",
+  "description": "Automated sunrise/sunset calculator with programmatic SEO",
+  "version": "1.0.0",
+  "scripts": {
+    "generate-pages": "scripts/generate-pages.claude",
+    "daily-update": "scripts/daily-update.claude"
+  },
+  "hooks": {
+    "pre-generate": "npm run build-check",
+    "post-generate": "npm run validate-html"
+  },
+  "settings": {
+    "auto-commit": false,
+    "watch-files": ["src/**/*", "scripts/**/*"],
+    "output-format": "html",
+    "seo-optimization": true
+  },
+  "data": {
+    "locations": "src/data/locations.json",
+    "templates": "src/templates/",
+    "output": "public/locations/"
+  },
+  "deployment": {
+    "target": "static",
+    "build-command": "npm run build",
+    "output-dir": "dist"
+  }
+}

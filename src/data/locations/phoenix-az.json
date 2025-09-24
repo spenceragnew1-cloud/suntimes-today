@@ -1,0 +1,30 @@
+{
+  "name": "Phoenix",
+  "state": "Arizona",
+  "stateCode": "AZ",
+  "country": "United States",
+  "latitude": 33.4484,
+  "longitude": -112.074,
+  "timezone": "America/Phoenix",
+  "population": 1680992,
+  "elevation": 331,
+  "metro": "Phoenix-Mesa-Scottsdale",
+  "keywords": [
+    "Valley of the Sun",
+    "Desert City"
+  ],
+  "attractions": [
+    "Desert Botanical Garden",
+    "Camelback Mountain",
+    "Papago Park",
+    "South Mountain Park"
+  ],
+  "photoSpots": [
+    "South Mountain Park",
+    "Camelback Mountain",
+    "Papago Park",
+    "Tempe Town Lake",
+    "McDowell Mountain"
+  ],
+  "description": "The Sonoran Desert surrounding Phoenix creates dramatic silhouettes and vibrant colors during sunrise and sunset hours."
+}

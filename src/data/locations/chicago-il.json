@@ -1,0 +1,33 @@
+{
+  "name": "Chicago",
+  "state": "Illinois",
+  "stateCode": "IL",
+  "country": "United States",
+  "latitude": 41.8781,
+  "longitude": -87.6298,
+  "timezone": "America/Chicago",
+  "population": 2693976,
+  "elevation": 181,
+  "metro": "Chicago-Naperville-Elgin",
+  "keywords": [
+    "Windy City",
+    "Chi-town",
+    "Second City",
+    "City of Big Shoulders"
+  ],
+  "attractions": [
+    "Millennium Park",
+    "Navy Pier",
+    "Art Institute",
+    "Willis Tower",
+    "Lincoln Park Zoo"
+  ],
+  "photoSpots": [
+    "North Avenue Beach",
+    "Lakefront Trail",
+    "Montrose Harbor",
+    "Oak Street Beach",
+    "31st Street Beach"
+  ],
+  "description": "Chicago's lakefront provides magnificent sunrise views over Lake Michigan and beautiful sunset reflections across the city skyline."
+}

@@ -1,0 +1,27 @@
+{
+  "totalLocations": 15,
+  "totalPopulation": 30563860,
+  "states": [
+    "AZ",
+    "CA",
+    "FL",
+    "IL",
+    "NC",
+    "NY",
+    "OH",
+    "PA",
+    "TX"
+  ],
+  "timezones": [
+    "America/Chicago",
+    "America/Los_Angeles",
+    "America/New_York",
+    "America/Phoenix"
+  ],
+  "averageLatitude": 34.706826666666664,
+  "averageLongitude": -95.82653333333334,
+  "elevationRange": {
+    "min": 5,
+    "max": 331
+  }
+}

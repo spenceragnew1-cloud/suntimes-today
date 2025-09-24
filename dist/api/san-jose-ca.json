@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "San Jose",
+    "state": "CA",
+    "coordinates": {
+      "latitude": 37.3382,
+      "longitude": -121.8863
+    },
+    "timezone": "America/Los_Angeles"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T13:58:23.263Z",
+    "sunset": "2025-09-25T02:03:14.085Z",
+    "solarNoon": "2025-09-24T20:00:48.674Z",
+    "daylightHours": 12.080783888888888,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T13:32:22.397Z",
+    "civilDusk": "2025-09-25T02:29:14.951Z",
+    "nauticalDawn": "2025-09-24T13:02:00.035Z",
+    "nauticalDusk": "2025-09-25T02:59:37.313Z",
+    "astronomicalDawn": "2025-09-24T12:31:14.096Z",
+    "astronomicalDusk": "2025-09-25T03:30:23.252Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

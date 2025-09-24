@@ -1,0 +1,30 @@
+{
+  "name": "Charlotte",
+  "state": "North Carolina",
+  "stateCode": "NC",
+  "country": "United States",
+  "latitude": 35.2271,
+  "longitude": -80.8431,
+  "timezone": "America/New_York",
+  "population": 885708,
+  "elevation": 229,
+  "metro": "Charlotte-Concord-Gastonia",
+  "keywords": [
+    "Queen City",
+    "QC"
+  ],
+  "attractions": [
+    "NASCAR Hall of Fame",
+    "Freedom Park",
+    "Levine Museum",
+    "Mint Museum"
+  ],
+  "photoSpots": [
+    "Lake Norman",
+    "Freedom Park",
+    "Romare Bearden Park",
+    "Crowders Mountain",
+    "McDowell Nature Center"
+  ],
+  "description": "Charlotte's piedmont location and nearby lakes create beautiful opportunities for capturing Southern sunrise and sunset scenes."
+}

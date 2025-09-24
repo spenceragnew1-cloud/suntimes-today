@@ -1,0 +1,29 @@
+{
+  "name": "San Antonio",
+  "state": "Texas",
+  "stateCode": "TX",
+  "country": "United States",
+  "latitude": 29.4241,
+  "longitude": -98.4936,
+  "timezone": "America/Chicago",
+  "population": 1547253,
+  "elevation": 198,
+  "metro": "San Antonio-New Braunfels",
+  "keywords": [
+    "Alamo City",
+    "Military City USA"
+  ],
+  "attractions": [
+    "The Alamo",
+    "River Walk",
+    "San Antonio Missions",
+    "Pearl District"
+  ],
+  "photoSpots": [
+    "San Antonio River Walk",
+    "Brackenridge Park",
+    "Japanese Tea Garden",
+    "Mission San José"
+  ],
+  "description": "San Antonio's River Walk and historic missions provide unique settings for capturing sunrise and sunset moments in South Texas."
+}

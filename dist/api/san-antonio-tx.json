@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "San Antonio",
+    "state": "TX",
+    "coordinates": {
+      "latitude": 29.4241,
+      "longitude": -98.4936
+    },
+    "timezone": "America/Chicago"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T12:24:43.298Z",
+    "sunset": "2025-09-25T00:29:45.554Z",
+    "solarNoon": "2025-09-24T18:27:14.426Z",
+    "daylightHours": 12.08396,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T12:00:59.066Z",
+    "civilDusk": "2025-09-25T00:53:29.786Z",
+    "nauticalDawn": "2025-09-24T11:33:20.541Z",
+    "nauticalDusk": "2025-09-25T01:21:08.311Z",
+    "astronomicalDawn": "2025-09-24T11:05:30.717Z",
+    "astronomicalDusk": "2025-09-25T01:48:58.135Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

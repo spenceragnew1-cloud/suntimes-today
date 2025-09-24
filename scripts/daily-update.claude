@@ -1,0 +1,19 @@
+# Daily SunTimes Update
+# Automated daily content refresh
+
+Update today's sunrise/sunset data for all locations.
+
+Tasks:
+1. Calculate current date sunrise/sunset times for all tracked cities
+2. Update "today" pages with fresh data
+3. Generate new blog posts if significant events (solstices, equinoxes)
+4. Update social media content suggestions
+5. Refresh sitemap with any new content
+6. Validate all generated HTML and fix any issues
+
+Use real-time solar calculation APIs and update the following:
+- public/locations/*/today.html
+- src/data/current-times.json
+- public/sitemap.xml
+
+Ensure all times are accurate and properly formatted.

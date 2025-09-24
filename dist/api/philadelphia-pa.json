@@ -1,0 +1,28 @@
+{
+  "location": {
+    "name": "Philadelphia",
+    "state": "PA",
+    "coordinates": {
+      "latitude": 39.9526,
+      "longitude": -75.1652
+    },
+    "timezone": "America/New_York"
+  },
+  "date": "2025-09-24",
+  "sunTimes": {
+    "sunrise": "2025-09-24T10:51:31.256Z",
+    "sunset": "2025-09-24T22:56:19.964Z",
+    "solarNoon": "2025-09-24T16:53:55.610Z",
+    "daylightHours": 12.080196666666666,
+    "polarEvent": "none"
+  },
+  "twilightTimes": {
+    "civilDawn": "2025-09-24T10:24:32.081Z",
+    "civilDusk": "2025-09-24T23:23:19.139Z",
+    "nauticalDawn": "2025-09-24T09:52:59.380Z",
+    "nauticalDusk": "2025-09-24T23:54:51.840Z",
+    "astronomicalDawn": "2025-09-24T09:20:56.782Z",
+    "astronomicalDusk": "2025-09-25T00:26:54.438Z"
+  },
+  "lastUpdated": "2025-09-24T16:51:37.917Z"
+}

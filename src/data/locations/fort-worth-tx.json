@@ -1,0 +1,28 @@
+{
+  "name": "Fort Worth",
+  "state": "Texas",
+  "stateCode": "TX",
+  "country": "United States",
+  "latitude": 32.7555,
+  "longitude": -97.3308,
+  "timezone": "America/Chicago",
+  "population": 918915,
+  "elevation": 203,
+  "metro": "Dallas-Fort Worth-Arlington",
+  "keywords": [
+    "Cowtown",
+    "Where the West Begins"
+  ],
+  "attractions": [
+    "Stockyards National Historic District",
+    "Kimbell Art Museum",
+    "Fort Worth Zoo"
+  ],
+  "photoSpots": [
+    "Trinity River",
+    "Fort Worth Nature Center",
+    "Eagle Mountain Lake",
+    "Benbrook Lake"
+  ],
+  "description": "Fort Worth's western heritage landscape and Trinity River provide authentic Texas settings for sunrise and sunset photography."
+}

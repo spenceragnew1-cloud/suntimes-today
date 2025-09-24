@@ -1,0 +1,29 @@
+{
+  "name": "Dallas",
+  "state": "Texas",
+  "stateCode": "TX",
+  "country": "United States",
+  "latitude": 32.7767,
+  "longitude": -96.797,
+  "timezone": "America/Chicago",
+  "population": 1343573,
+  "elevation": 131,
+  "metro": "Dallas-Fort Worth-Arlington",
+  "keywords": [
+    "Big D",
+    "D-Town"
+  ],
+  "attractions": [
+    "Sixth Floor Museum",
+    "Dallas Arts District",
+    "Fair Park",
+    "Deep Ellum"
+  ],
+  "photoSpots": [
+    "White Rock Lake",
+    "Trinity River Audubon Center",
+    "Fair Park",
+    "Klyde Warren Park"
+  ],
+  "description": "Dallas's urban lakes and the Trinity River corridor provide excellent vantage points for sunrise and sunset photography in North Texas."
+}

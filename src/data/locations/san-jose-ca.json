@@ -1,0 +1,28 @@
+{
+  "name": "San Jose",
+  "state": "California",
+  "stateCode": "CA",
+  "country": "United States",
+  "latitude": 37.3382,
+  "longitude": -121.8863,
+  "timezone": "America/Los_Angeles",
+  "population": 1021795,
+  "elevation": 25,
+  "metro": "San Jose-Sunnyvale-Santa Clara",
+  "keywords": [
+    "Capital of Silicon Valley",
+    "Tech Capital"
+  ],
+  "attractions": [
+    "Tech Interactive",
+    "Municipal Rose Garden",
+    "Winchester Mystery House"
+  ],
+  "photoSpots": [
+    "Alum Rock Park",
+    "Communications Hill",
+    "Guadalupe River Trail",
+    "Almaden Quicksilver Park"
+  ],
+  "description": "San Jose's location in the Santa Clara Valley provides mountain backdrops and bay views for dramatic sunrise and sunset scenes."
+}
