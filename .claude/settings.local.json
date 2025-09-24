@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(node:*)",
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "Read(//c/Users/Spencer/Desktop/suntimes-today-claude/**)",
+      "Bash(build-professional.bat)"
     ],
     "deny": [],
     "ask": []

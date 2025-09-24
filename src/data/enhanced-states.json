@@ -1,0 +1,56 @@
+{
+  "NY": {
+    "name": "New York",
+    "cities": [
+      {
+        "slug": "new-york-ny",
+        "name": "New York",
+        "population": 8336817,
+        "elevation": 33,
+        "keywords": [
+          "NYC sunrise times",
+          "New York sunset",
+          "Manhattan golden hour",
+          "Brooklyn photography"
+        ]
+      }
+    ],
+    "totalPopulation": 8336817
+  },
+  "CA": {
+    "name": "California",
+    "cities": [
+      {
+        "slug": "los-angeles-ca",
+        "name": "Los Angeles",
+        "population": 3979576,
+        "elevation": 285,
+        "keywords": [
+          "LA sunrise times",
+          "Los Angeles sunset",
+          "Hollywood golden hour",
+          "Malibu photography"
+        ]
+      }
+    ],
+    "totalPopulation": 3979576
+  },
+  "IL": {
+    "name": "Illinois",
+    "cities": [
+      {
+        "slug": "chicago-il",
+        "name": "Chicago",
+        "population": 2693976,
+        "elevation": 594,
+        "keywords": [
+          "Chicago sunrise times",
+          "Lake Michigan sunset",
+          "Willis Tower golden hour",
+          "Navy Pier photography"
+        ]
+      }
+    ],
+    "totalPopulation": 2693976
+  }
+}

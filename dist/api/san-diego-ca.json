@@ -10,19 +10,19 @@
   },
   "date": "2025-09-24",
   "sunTimes": {
-    "sunrise": "2025-09-24T13:39:26.303Z",
-    "sunset": "2025-09-25T01:44:22.949Z",
-    "solarNoon": "2025-09-24T19:41:54.626Z",
-    "daylightHours": 12.082401666666666,
+    "sunrise": "2025-09-24T13:39:27.377Z",
+    "sunset": "2025-09-25T01:44:20.661Z",
+    "solarNoon": "2025-09-24T19:41:54.019Z",
+    "daylightHours": 12.081467777777778,
     "polarEvent": "none"
   },
   "twilightTimes": {
-    "civilDawn": "2025-09-24T13:14:51.689Z",
-    "civilDusk": "2025-09-25T02:08:57.563Z",
-    "nauticalDawn": "2025-09-24T12:46:12.907Z",
-    "nauticalDusk": "2025-09-25T02:37:36.345Z",
-    "astronomicalDawn": "2025-09-24T12:17:18.691Z",
-    "astronomicalDusk": "2025-09-25T03:06:30.560Z"
+    "civilDawn": "2025-09-24T13:14:52.772Z",
+    "civilDusk": "2025-09-25T02:08:55.267Z",
+    "nauticalDawn": "2025-09-24T12:46:14.026Z",
+    "nauticalDusk": "2025-09-25T02:37:34.013Z",
+    "astronomicalDawn": "2025-09-24T12:17:19.877Z",
+    "astronomicalDusk": "2025-09-25T03:06:28.161Z"
   },
-  "lastUpdated": "2025-09-24T16:51:37.917Z"
+  "lastUpdated": "2025-09-24T17:31:56.901Z"
 }

@@ -1,0 +1,256 @@
+// scripts/generate-enhanced-locations.js
+// Complete enhanced location data for premium SEO performance
+
+const fs = require('fs').promises;
+const path = require('path');
+
+const enhancedLocationData = {
+  "new-york-ny": {
+    name: "New York",
+    state: "New York", 
+    stateCode: "NY",
+    country: "United States",
+    latitude: 40.7128,
+    longitude: -74.0060,
+    timezone: "America/New_York",
+    population: 8336817,
+    elevation: 33,
+    keywords: ["NYC sunrise times", "New York sunset", "Manhattan golden hour", "Brooklyn photography"],
+    nearbyLocations: ["jersey-city-nj", "newark-nj", "yonkers-ny", "white-plains-ny"],
+    attractions: [
+      {name: "Brooklyn Bridge Park", sunViewingInfo: "Spectacular Manhattan skyline sunrise views across the East River"},
+      {name: "Top of the Rock", sunViewingInfo: "360-degree sunset views from the observation deck"},
+      {name: "Central Park Reservoir", sunViewingInfo: "Peaceful sunrise reflections with city backdrop"},
+      {name: "Staten Island Ferry", sunViewingInfo: "Free sunset views of Statue of Liberty and harbor"}
+    ],
+    photoSpots: [
+      {name: "DUMBO Waterfront", description: "Iconic Manhattan Bridge framing with sunrise lighting"},
+      {name: "Gantry Plaza State Park", description: "Unobstructed Manhattan skyline sunset views from Queens"},
+      {name: "High Line Park", description: "Elevated urban sunset photography between buildings"}
+    ],
+    localInfo: {
+      bestViewingMonths: ["June", "July", "December", "January"],
+      sunriseDirection: "East over Queens and Long Island",
+      sunsetDirection: "West over New Jersey and Hudson River", 
+      uniqueFeatures: "Urban canyon effects create dramatic lighting between skyscrapers. The city's waterways provide stunning reflections during golden hour.",
+      photographyTips: "Visit Brooklyn Heights Promenade for Manhattan skyline shots during blue hour. Central Park's Bow Bridge offers classic sunrise compositions with city reflections.",
+      seasonalHighlights: "Winter offers crisp, clear views with snow-covered cityscapes, while summer provides long twilight periods perfect for extended photography sessions.",
+      localGeography: "The city's position between rivers and harbors creates unique microclimates and lighting conditions throughout different neighborhoods."
+    },
+    seoContent: {
+      metaTitle: "NYC Sunrise & Sunset Times Today - New York City Sun Calculator", 
+      metaDescription: "Get today's exact sunrise and sunset times for New York City. Brooklyn Bridge, Central Park, and Top of the Rock photography times. Updated daily.",
+      uniqueLocationInfo: "New York City's unique geography, situated between the Hudson and East Rivers, creates exceptional sunrise and sunset viewing opportunities. The city's iconic skyline provides dramatic silhouettes against colorful skies, while waterfront areas offer unobstructed views and stunning reflections.",
+      seasonalVariations: "NYC experiences significant seasonal changes, with winter sunrises as late as 7:20 AM and summer sunrises as early as 5:25 AM. The winter sun sets around 4:30 PM, while summer sunsets can occur as late as 8:30 PM, providing diverse photographic opportunities year-round.",
+      bestSunriseSpots: "The best sunrise viewing locations include Brooklyn Bridge Park for Manhattan skyline views, Central Park Reservoir for peaceful urban nature shots, and the Staten Island Ferry for harbor sunrise perspectives. Each location offers unique compositional opportunities.",
+      sunsetPhotoTips: "For optimal sunset photography in NYC, head to rooftop bars in Manhattan, the High Line for urban canyon shots, or New Jersey waterfront areas for full city skyline views. The golden hour typically lasts 20-30 minutes, so arrive early to set up equipment."
+    }
+  },
+
+  "los-angeles-ca": {
+    name: "Los Angeles",
+    state: "California",
+    stateCode: "CA", 
+    country: "United States",
+    latitude: 34.0522,
+    longitude: -118.2437,
+    timezone: "America/Los_Angeles",
+    population: 3979576,
+    elevation: 285,
+    keywords: ["LA sunrise times", "Los Angeles sunset", "Hollywood golden hour", "Malibu photography"],
+    nearbyLocations: ["santa-monica-ca", "pasadena-ca", "long-beach-ca", "beverly-hills-ca"],
+    attractions: [
+      {name: "Griffith Observatory", sunViewingInfo: "Panoramic sunrise views over the city with Hollywood Sign visibility"},
+      {name: "Manhattan Beach Pier", sunViewingInfo: "Classic California sunset pier photography over Pacific Ocean"},
+      {name: "Malibu Point Dume", sunViewingInfo: "Dramatic clifftop sunset views with Channel Islands backdrop"},
+      {name: "Getty Center", sunViewingInfo: "Elevated sunset views over LA basin and ocean"}
+    ],
+    photoSpots: [
+      {name: "El Matador Beach", description: "Iconic Malibu sea stack formations perfect for sunset silhouettes"},
+      {name: "Angeles National Forest", description: "Mountain sunrise views overlooking the entire LA basin"},
+      {name: "Venice Beach Boardwalk", description: "Classic California beach culture sunset photography"}
+    ],
+    localInfo: {
+      bestViewingMonths: ["October", "November", "March", "April"],
+      sunriseDirection: "East over San Gabriel Mountains",
+      sunsetDirection: "West over Pacific Ocean",
+      uniqueFeatures: "Perfect combination of ocean, mountains, and urban landscapes. LA's Mediterranean climate provides excellent visibility most days of the year.",
+      photographyTips: "The marine layer often clears by sunrise, creating dramatic cloud formations. Use telephoto lenses to compress mountain backgrounds with city foregrounds.",
+      seasonalHighlights: "Fall and spring offer the clearest skies with minimal marine layer interference. Winter sunsets are particularly vibrant due to lower sun angles and occasional storm systems.",
+      localGeography: "LA's unique basin geography, surrounded by mountains and ocean, creates diverse microclimates and exceptional sunrise/sunset viewing opportunities within a 50-mile radius."
+    },
+    seoContent: {
+      metaTitle: "Los Angeles Sunrise & Sunset Times - LA Sun Calculator & Photography Guide",
+      metaDescription: "Today's LA sunrise and sunset times. Griffith Observatory, Malibu, Manhattan Beach photography schedules. Golden hour times for Hollywood, Santa Monica, Venice Beach.",
+      uniqueLocationInfo: "Los Angeles offers unparalleled diversity for sunrise and sunset photography, from Pacific Ocean horizons to San Gabriel Mountain peaks. The city's sprawling geography means you can experience ocean sunrises in Manhattan Beach and mountain sunsets in the Hollywood Hills within the same day.",
+      seasonalVariations: "LA's Mediterranean climate creates relatively stable sunrise and sunset patterns, with summer days stretching from 5:45 AM to 8:00 PM, while winter ranges from 6:58 AM to 5:00 PM. The marine layer adds dramatic morning cloud formations during May through August.",
+      bestSunriseSpots: "Top sunrise locations include Griffith Observatory for city overlooks, El Matador Beach for ocean perspectives, and the Angeles National Forest for mountain vistas. Each spot offers unique lighting conditions and compositional opportunities.",
+      sunsetPhotoTips: "LA's famous golden hour light is enhanced by atmospheric particles, creating warm, diffused lighting. For best results, scout beach locations for ocean sunsets or mountain viewpoints for city light transitions during blue hour."
+    }
+  },
+
+  "chicago-il": {
+    name: "Chicago", 
+    state: "Illinois",
+    stateCode: "IL",
+    country: "United States",
+    latitude: 41.8781,
+    longitude: -87.6298,
+    timezone: "America/Chicago",
+    population: 2693976,
+    elevation: 594,
+    keywords: ["Chicago sunrise times", "Lake Michigan sunset", "Willis Tower golden hour", "Navy Pier photography"],
+    nearbyLocations: ["milwaukee-wi", "gary-in", "evanston-il", "oak-park-il"],
+    attractions: [
+      {name: "North Avenue Beach", sunViewingInfo: "Spectacular Lake Michigan sunrise with downtown skyline backdrop"},
+      {name: "Navy Pier", sunViewingInfo: "Iconic sunset views over the lake with Ferris wheel silhouettes"},
+      {name: "Lakefront Trail", sunViewingInfo: "18 miles of continuous sunrise and sunset viewing opportunities"},
+      {name: "Adler Planetarium", sunViewingInfo: "Unobstructed city skyline views for both sunrise and sunset photography"}
+    ],
+    photoSpots: [
+      {name: "Oak Street Beach", description: "Classic Chicago skyline sunrise reflections on Lake Michigan"},
+      {name: "Montrose Harbor", description: "Peaceful sunrise spot with sailboat foregrounds and city views"},
+      {name: "31st Street Beach", description: "Southern skyline perspective with dramatic sunrise lighting"}
+    ],
+    localInfo: {
+      bestViewingMonths: ["September", "October", "May", "June"],
+      sunriseDirection: "East over Lake Michigan", 
+      sunsetDirection: "West over the prairie and western suburbs",
+      uniqueFeatures: "Lake Michigan acts like an inland ocean, providing stunning sunrise reflections and lake-effect weather phenomena. The flat prairie landscape offers unobstructed sunset views.",
+      photographyTips: "The lake's thermal effects create unique cloud formations during sunrise. Winter ice formations along the shoreline provide dramatic foreground elements for city skyline shots.",
+      seasonalHighlights: "Summer offers warm lake breezes and comfortable photography conditions. Winter can be harsh but provides spectacular ice formations and crisp, clear atmospheric conditions.",
+      localGeography: "Chicago's location on the southwestern shore of Lake Michigan creates a unique situation where both sunrise and sunset can be photographed over water during certain seasons."
+    },
+    seoContent: {
+      metaTitle: "Chicago Sunrise & Sunset Times - Lake Michigan Sun Calculator & Photo Guide",
+      metaDescription: "Today's Chicago sun times. North Avenue Beach, Navy Pier, Lakefront Trail photography schedules. Lake Michigan sunrise and prairie sunset viewing guide.",
+      uniqueLocationInfo: "Chicago's position on Lake Michigan's southwestern shore creates unique photographic opportunities, with sunrise over the vast lake appearing ocean-like and sunsets over the endless prairie landscape. The city's lakefront provides 18 miles of continuous viewing opportunities.",
+      seasonalVariations: "Chicago experiences dramatic seasonal variations, with summer sunrises at 5:18 AM and sunsets at 8:19 PM, contrasting with winter sunrises at 7:13 AM and sunsets at 4:25 PM. Lake effect weather creates dynamic cloud formations throughout the year.",
+      bestSunriseSpots: "Premier sunrise locations include Oak Street Beach for skyline reflections, Montrose Harbor for peaceful harbor scenes, and 31st Street Beach for southern skyline perspectives. Each offers unique architectural and natural elements.",
+      sunsetPhotoTips: "Chicago's prairie sunsets are enhanced by the flat western landscape, allowing for unobstructed horizon views. The thermal effects of Lake Michigan often create interesting cloud formations during golden hour transitions."
+    }
+  }
+};
+
+async function generateEnhancedLocationData() {
+  try {
+    // Ensure data directory exists
+    await fs.mkdir(path.join(__dirname, '../src/data'), { recursive: true });
+    
+    // Write enhanced locations file
+    await fs.writeFile(
+      path.join(__dirname, '../src/data/enhanced-locations.json'),
+      JSON.stringify(enhancedLocationData, null, 2)
+    );
+
+    // Generate state index with enhanced data
+    const stateIndex = {};
+    Object.entries(enhancedLocationData).forEach(([slug, data]) => {
+      if (!stateIndex[data.stateCode]) {
+        stateIndex[data.stateCode] = {
+          name: data.state,
+          cities: [],
+          totalPopulation: 0
+        };
+      }
+      stateIndex[data.stateCode].cities.push({
+        slug,
+        name: data.name,
+        population: data.population,
+        elevation: data.elevation,
+        keywords: data.keywords
+      });
+      stateIndex[data.stateCode].totalPopulation += data.population;
+    });
+
+    await fs.writeFile(
+      path.join(__dirname, '../src/data/enhanced-states.json'),
+      JSON.stringify(stateIndex, null, 2)
+    );
+
+    console.log('✅ Enhanced location data generated successfully!');
+    console.log(`📍 Generated ${Object.keys(enhancedLocationData).length} enhanced locations`);
+    console.log(`🗺️ Generated ${Object.keys(stateIndex).length} state indexes with rich content`);
+    console.log('🎯 Each location includes:');
+    console.log('  - Detailed photography spots and tips');
+    console.log('  - SEO-optimized content and metadata'); 
+    console.log('  - Seasonal information and local geography');
+    console.log('  - Tourist attractions with sun viewing info');
+    console.log('  - Related location linking structure');
+    
+    return enhancedLocationData;
+  } catch (error) {
+    console.error('❌ Error generating enhanced location data:', error);
+    throw error;
+  }
+}
+
+// Function to add more cities (for scaling)
+async function addCityData(citySlug, cityData) {
+  try {
+    const existingData = JSON.parse(
+      await fs.readFile(path.join(__dirname, '../src/data/enhanced-locations.json'), 'utf8')
+    );
+    
+    existingData[citySlug] = cityData;
+    
+    await fs.writeFile(
+      path.join(__dirname, '../src/data/enhanced-locations.json'),
+      JSON.stringify(existingData, null, 2)
+    );
+    
+    console.log(`✅ Added ${cityData.name}, ${cityData.stateCode} to enhanced locations`);
+  } catch (error) {
+    console.error(`❌ Error adding city ${citySlug}:`, error);
+  }
+}
+
+// Template for adding new cities quickly
+const newCityTemplate = {
+  name: "",
+  state: "",
+  stateCode: "",
+  country: "United States",
+  latitude: 0,
+  longitude: 0,
+  timezone: "",
+  population: 0,
+  elevation: 0,
+  keywords: [],
+  nearbyLocations: [],
+  attractions: [
+    {name: "", sunViewingInfo: ""}
+  ],
+  photoSpots: [
+    {name: "", description: ""}
+  ],
+  localInfo: {
+    bestViewingMonths: [],
+    sunriseDirection: "",
+    sunsetDirection: "",
+    uniqueFeatures: "",
+    photographyTips: "",
+    seasonalHighlights: "",
+    localGeography: ""
+  },
+  seoContent: {
+    metaTitle: "",
+    metaDescription: "", 
+    uniqueLocationInfo: "",
+    seasonalVariations: "",
+    bestSunriseSpots: "",
+    sunsetPhotoTips: ""
+  }
+};
+
+// Run if called directly
+if (require.main === module) {
+  generateEnhancedLocationData().catch(console.error);
+}
+
+module.exports = { 
+  generateEnhancedLocationData, 
+  addCityData, 
+  newCityTemplate,
+  enhancedLocationData 
+};
