@@ -620,124 +620,78 @@
             }
         }
         
-        // FIXED Sun calculation class
+        // Simple Sun calculation class with FIXED logic
         class SunCalculator {
             constructor() {
-                this.J1970 = 2440588;
-                this.J2000 = 2451545;
-                this.deg2rad = Math.PI / 180;
-                this.rad2deg = 180 / Math.PI;
+                this.J2000 = 2451545.0;
             }
 
-            // Convert date to Julian day
-            toJulianDay(date) {
-                return date.valueOf() / 86400000 - 0.5 + this.J1970;
-            }
-
-            // Calculate sun times for given location and date
             calculateSunTimes(lat, lng, date) {
-                const lw = lng * -this.deg2rad;
-                const phi = lat * this.deg2rad;
-                const d = this.toJulianDay(date) - this.J2000;
-
-                const M = this.solarMeanAnomaly(d);
-                const L = this.eclipticLongitude(M);
-                const dec = this.sunDeclination(L);
-                const alpha = this.rightAscension(L);
-
-                const siderealTime = this.siderealTime(d, lw);
-                const azimuth = this.azimuth(siderealTime, alpha, dec, phi);
-                const altitude = this.altitude(siderealTime, alpha, dec, phi);
-
-                const Jnoon = this.J2000 + d + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+                const julianDay = this.getJulianDay(date);
+                const n = julianDay - this.J2000 + 0.0008;
                 
-                // Calculate hour angle for sunrise/sunset (-0.833 degrees)
-                const h0 = -0.833 * this.deg2rad;
+                const L = (280.460 + 0.9856474 * n) % 360;
+                const g = ((357.528 + 0.9856003 * n) % 360) * Math.PI / 180;
+                const lambda = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * Math.PI / 180;
+                
+                const alpha = Math.atan2(Math.cos(23.439 * Math.PI / 180) * Math.sin(lambda), Math.cos(lambda));
+                const delta = Math.asin(Math.sin(23.439 * Math.PI / 180) * Math.sin(lambda));
+                
+                const lw = lng * Math.PI / 180;
+                const phi = lat * Math.PI / 180;
+                
+                const h0 = -0.833 * Math.PI / 180; // Standard sun angle
                 
                 try {
-                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)));
+                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta)));
                     
-                    // FIXED: Proper sunrise and sunset calculation
-                    const Jset = Jnoon + H / (2 * Math.PI);
-                    const Jrise = Jnoon - H / (2 * Math.PI);
-
-                    const sunrise = new Date((Jrise - this.J1970 + 0.5) * 86400000);
-                    const sunset = new Date((Jset - this.J1970 + 0.5) * 86400000);
-
-                    // Calculate twilight times
-                    const civilTwilight = this.getTwilightTimes(lat, lng, date, -6);
-                    const nauticalTwilight = this.getTwilightTimes(lat, lng, date, -12);
-
+                    const transit = this.J2000 + n + 0.0053 * Math.sin(g) - 0.0069 * Math.sin(2 * lambda) - lw / (2 * Math.PI);
+                    const sunrise = transit - H / (2 * Math.PI);
+                    const sunset = transit + H / (2 * Math.PI);
+                    
                     return {
-                        sunrise,
-                        sunset,
-                        civilDawn: civilTwilight.dawn,
-                        civilDusk: civilTwilight.dusk,
-                        nauticalDawn: nauticalTwilight.dawn,
-                        nauticalDusk: nauticalTwilight.dusk
+                        sunrise: this.julianToDate(sunrise),
+                        sunset: this.julianToDate(sunset),
+                        civilDawn: this.getTwilightTime(lat, lng, date, -6, true),
+                        civilDusk: this.getTwilightTime(lat, lng, date, -6, false),
+                        nauticalDawn: this.getTwilightTime(lat, lng, date, -12, true),
+                        nauticalDusk: this.getTwilightTime(lat, lng, date, -12, false)
                     };
                 } catch (e) {
-                    // Polar day/night - no sunrise/sunset
-                    return {
-                        sunrise: null,
-                        sunset: null,
-                        polarEvent: true
-                    };
+                    return { sunrise: null, sunset: null };
                 }
             }
 
-            solarMeanAnomaly(d) {
-                return (357.5291 + 0.98560028 * d) * this.deg2rad;
-            }
-
-            eclipticLongitude(M) {
-                const C = (1.9148 * Math.sin(M) + 0.0200 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M)) * this.deg2rad;
-                return M + C + (102.9372 * this.deg2rad) + Math.PI;
-            }
-
-            sunDeclination(L) {
-                return Math.asin(Math.sin(L) * Math.sin(23.4397 * this.deg2rad));
-            }
-
-            rightAscension(L) {
-                return Math.atan2(Math.sin(L) * Math.cos(23.4397 * this.deg2rad), Math.cos(L));
-            }
-
-            siderealTime(d, lw) {
-                return (280.1600 + 360.9856235 * d) * this.deg2rad - lw;
-            }
-
-            azimuth(H, alpha, dec, phi) {
-                return Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(phi) - Math.tan(dec) * Math.cos(phi));
-            }
-
-            altitude(H, alpha, dec, phi) {
-                return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H));
-            }
-
-            getTwilightTimes(lat, lng, date, angle) {
-                const lw = lng * -this.deg2rad;
-                const phi = lat * this.deg2rad;
-                const d = this.toJulianDay(date) - this.J2000;
-                const M = this.solarMeanAnomaly(d);
-                const L = this.eclipticLongitude(M);
-                const dec = this.sunDeclination(L);
-                const Jnoon = this.J2000 + d + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
-
-                const h0 = angle * this.deg2rad;
+            getTwilightTime(lat, lng, date, angle, isDawn) {
+                const julianDay = this.getJulianDay(date);
+                const n = julianDay - this.J2000 + 0.0008;
+                
+                const L = (280.460 + 0.9856474 * n) % 360;
+                const g = ((357.528 + 0.9856003 * n) % 360) * Math.PI / 180;
+                const lambda = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * Math.PI / 180;
+                
+                const delta = Math.asin(Math.sin(23.439 * Math.PI / 180) * Math.sin(lambda));
+                const phi = lat * Math.PI / 180;
+                const h0 = angle * Math.PI / 180;
                 
                 try {
-                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)));
-                    const Jset = Jnoon + H / (2 * Math.PI);
-                    const Jrise = Jnoon - H / (2 * Math.PI);
-
-                    return {
-                        dawn: new Date((Jrise - this.J1970 + 0.5) * 86400000),
-                        dusk: new Date((Jset - this.J1970 + 0.5) * 86400000)
-                    };
+                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta)));
+                    const lw = lng * Math.PI / 180;
+                    const transit = this.J2000 + n + 0.0053 * Math.sin(g) - 0.0069 * Math.sin(2 * lambda) - lw / (2 * Math.PI);
+                    
+                    const twilight = isDawn ? transit - H / (2 * Math.PI) : transit + H / (2 * Math.PI);
+                    return this.julianToDate(twilight);
                 } catch (e) {
-                    return { dawn: null, dusk: null };
+                    return null;
                 }
+            }
+
+            getJulianDay(date) {
+                return date.getTime() / 86400000 + 2440587.5;
+            }
+
+            julianToDate(julian) {
+                return new Date((julian - 2440587.5) * 86400000);
             }
 
             formatTime(date, timezone = 'America/Chicago') {
@@ -759,9 +713,8 @@
             }
         }
 
-        // Geocoding function (simplified - in production use proper geocoding API)
+        // Simple geocoding function
         async function geocodeLocation(location) {
-            // Simple location lookup for demo
             const locationLookup = {
                 'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
                 'la': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
@@ -771,18 +724,28 @@
                 'houston': { lat: 29.7604, lng: -95.3698, timezone: 'America/Chicago' },
                 'phoenix': { lat: 33.4484, lng: -112.0740, timezone: 'America/Phoenix' },
                 'philadelphia': { lat: 39.9526, lng: -75.1652, timezone: 'America/New_York' },
-                'fort atkinson': { lat: 42.929, lng: -88.837, timezone: 'America/Chicago' },
-                'wisconsin': { lat: 42.929, lng: -88.837, timezone: 'America/Chicago' }
+                'fort atkinson': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
+                'wisconsin': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' }
             };
 
             const key = location.toLowerCase().trim();
             
-            // Check if it's in our lookup table
             for (const [city, coords] of Object.entries(locationLookup)) {
                 if (key.includes(city)) {
                     return coords;
                 }
             }
 
-            // Default to Los Angeles if location not found
+            // Default to Los Angeles
             return { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' };
+        }
+        
+        // FIXED Form submission with correct sun time calculations
+        document.getElementById('sunCalculatorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const location = document.getElementById('location').value;
+            const date = new Date(document.getElementById('date').value);
+            const errorElement = document.getElementById('errorMessage');
+            const loadingElement = document.getElementById('loading');
+            const resultsElement = document.getElementById('results');
