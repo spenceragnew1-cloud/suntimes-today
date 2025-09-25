@@ -4,7 +4,9 @@
       "Bash(node:*)",
       "Bash(npm install)",
       "Read(//c/Users/Spencer/Desktop/suntimes-today-claude/**)",
-      "Bash(build-professional.bat)"
+      "Bash(build-professional.bat)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

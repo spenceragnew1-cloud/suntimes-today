@@ -109,7 +109,7 @@ class EnhancedSiteBuilder {
     <link rel="canonical" href="${data.canonicalUrl}">
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.G-ZB05P3YGD8}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
