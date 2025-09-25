@@ -6,7 +6,8 @@
       "Read(//c/Users/Spencer/Desktop/suntimes-today-claude/**)",
       "Bash(build-professional.bat)",
       "Bash(git push:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
