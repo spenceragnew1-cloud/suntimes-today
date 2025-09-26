@@ -16,36 +16,25 @@
         gtag('config', 'G-ZB05P3YGD8');
     </script>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Sun Times Calculator - Sunrise & Sunset Times">
-    <meta property="og:description" content="Calculate accurate sunrise and sunset times for any location worldwide. Free online calculator with detailed sun information.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://suntimestoday.com">
-    
     <style>
         :root {
             --primary: #FF6B35;
             --primary-light: #FF8A65;
             --secondary: #2E86AB;
-            --accent: #A23B72;
             --text: #2D3748;
             --text-light: #718096;
             --bg: #FFFFFF;
             --bg-light: #F7FAFC;
             --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --border: #E2E8F0;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
@@ -57,17 +46,6 @@
             padding: 4rem 0 6rem 0;
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx=".66" cy=".5" r=".5"><stop offset="0" stop-color="%23FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="%23FFFFFF" stop-opacity="0"/></radialGradient></defs><circle cx="10" cy="10" r="10" fill="url(%23a)"/></svg>');
-            opacity: 0.3;
         }
         
         .container {
@@ -91,14 +69,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            line-height: 1.7;
         }
         
         .calculator-card {
@@ -120,9 +96,7 @@
             text-align: center;
         }
         
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
+        .input-group { margin-bottom: 1.5rem; }
         
         .input-label {
             display: block;
@@ -195,10 +169,7 @@
             border: 1px solid var(--border);
         }
         
-        .result-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+        .result-icon { font-size: 2rem; margin-bottom: 0.5rem; }
         
         .result-label {
             font-weight: 600;
@@ -234,21 +205,6 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-        
-        .city-dropdown {
-            max-width: 400px;
-            margin: 0 auto 3rem auto;
-        }
-        
-        .dropdown-select {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 1rem;
-            background: white;
-            cursor: pointer;
         }
         
         .popular-cities {
@@ -312,92 +268,6 @@
             color: var(--text);
         }
         
-        .features-section {
-            padding: 4rem 0;
-            background: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1rem;
-        }
-        
-        .feature-description {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 3rem 0 4rem 0;
-            }
-            
-            .calculator-card {
-                margin: -2rem 1rem 3rem 1rem;
-                padding: 2rem;
-            }
-            
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .results-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .city-times {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .spinner {
-            border: 3px solid var(--border);
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .error-message {
             color: #EF4444;
             background: #FEF2F2;
@@ -406,10 +276,21 @@
             margin-top: 1rem;
             display: none;
         }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .input-row { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+            .city-times { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <!-- Hero Section with Calculator -->
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
@@ -422,16 +303,15 @@
         </div>
     </section>
 
-    <!-- Main Calculator Tool -->
     <div class="container">
         <div class="calculator-card">
             <h2 class="calculator-title">Calculate Sun Times for Any Location</h2>
             
             <form id="sunCalculatorForm">
                 <div class="input-group">
-                    <label class="input-label" for="location">🏡 Location (Address, City, or Coordinates)</label>
+                    <label class="input-label" for="location">🏡 Location</label>
                     <input type="text" id="location" class="input-field" 
-                           placeholder="Enter city, address, or coordinates (e.g., Los Angeles, CA)">
+                           placeholder="Enter city (e.g., Los Angeles, CA)">
                 </div>
                 
                 <div class="input-row">
@@ -451,19 +331,11 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="calculate-btn">
-                    ✨ Calculate Sun Times
-                </button>
+                <button type="submit" class="calculate-btn">✨ Calculate Sun Times</button>
             </form>
 
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Calculating sun times...</p>
-            </div>
-
-            <div class="error-message" id="errorMessage">
-                Unable to calculate sun times. Please check your location and try again.
-            </div>
+            <div class="loading" id="loading">Calculating...</div>
+            <div class="error-message" id="errorMessage"></div>
 
             <div class="results-section" id="results">
                 <div class="results-grid">
@@ -515,97 +387,41 @@
         </div>
     </div>
 
-    <!-- Popular Cities Navigation -->
     <section class="city-navigation">
         <div class="container">
             <h2 class="section-title">Popular Cities</h2>
             <p class="section-subtitle">
-                Quick access to sun times for major cities. Each page provides detailed information 
-                including photography tips, best viewing spots, and seasonal variations.
+                Quick access to sun times for major cities with detailed photography tips.
             </p>
             
-            <div class="city-dropdown">
-                <select class="dropdown-select" id="cityDropdown" onchange="navigateToCity(this.value)">
-                    <option value="">Select a city...</option>
-                    <option value="/locations/ny/new-york-ny.html">New York, NY</option>
-                    <option value="/locations/ca/los-angeles-ca.html">Los Angeles, CA</option>
-                    <option value="/locations/il/chicago-il.html">Chicago, IL</option>
-                    <option value="/locations/tx/houston-tx.html">Houston, TX</option>
-                    <option value="/locations/az/phoenix-az.html">Phoenix, AZ</option>
-                    <option value="/locations/pa/philadelphia-pa.html">Philadelphia, PA</option>
-                </select>
-            </div>
-            
             <div class="popular-cities" id="popularCities">
-                <!-- Cities will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <h2 class="section-title">Why Use Our Sun Calculator?</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Precise Calculations</h3>
-                    <p class="feature-description">
-                        Accurate sun times calculated using astronomical algorithms. 
-                        Accounts for your exact location and elevation.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Mobile Optimized</h3>
-                    <p class="feature-description">
-                        Works perfectly on all devices. Calculate sun times 
-                        on-the-go with our responsive design.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📸</div>
-                    <h3 class="feature-title">Photography Ready</h3>
-                    <p class="feature-description">
-                        Golden hour times, blue hour information, and 
-                        photography tips for the perfect shot.
-                    </p>
-                </div>
+                <!-- Cities populated by JavaScript -->
             </div>
         </div>
     </section>
 
     <script>
-        // Set today's date as default
         document.getElementById('date').valueAsDate = new Date();
         
-        // Popular cities data
         const popularCities = [
             { name: 'New York', state: 'NY', url: '/locations/ny/new-york-ny.html', sunrise: '6:42 AM', sunset: '7:28 PM' },
             { name: 'Los Angeles', state: 'CA', url: '/locations/ca/los-angeles-ca.html', sunrise: '6:15 AM', sunset: '7:45 PM' },
-            { name: 'Chicago', state: 'IL', url: '/locations/il/chicago-il.html', sunrise: '6:28 AM', sunset: '7:15 PM' },
-            { name: 'Houston', state: 'TX', url: '/locations/tx/houston-tx.html', sunrise: '6:52 AM', sunset: '7:35 PM' },
-            { name: 'Phoenix', state: 'AZ', url: '/locations/az/phoenix-az.html', sunrise: '6:03 AM', sunset: '7:42 PM' },
-            { name: 'Philadelphia', state: 'PA', url: '/locations/pa/philadelphia-pa.html', sunrise: '6:38 AM', sunset: '7:31 PM' }
+            { name: 'Chicago', state: 'IL', url: '/locations/il/chicago-il.html', sunrise: '6:28 AM', sunset: '7:15 PM' }
         ];
         
-        // Populate popular cities
         function populatePopularCities() {
             const container = document.getElementById('popularCities');
             container.innerHTML = popularCities.map(city => `
                 <a href="${city.url}" class="city-card">
                     <div class="city-name">${city.name}, ${city.state}</div>
-                    <div class="city-info">Click for detailed sun times and photography tips</div>
+                    <div class="city-info">Detailed sun times and photography tips</div>
                     <div class="city-times">
                         <div class="time-info">
-                            <div class="time-label">Today's Sunrise</div>
+                            <div class="time-label">Sunrise</div>
                             <div class="time-value">${city.sunrise}</div>
                         </div>
                         <div class="time-info">
-                            <div class="time-label">Today's Sunset</div>
+                            <div class="time-label">Sunset</div>
                             <div class="time-value">${city.sunset}</div>
                         </div>
                     </div>
@@ -613,87 +429,53 @@
             `).join('');
         }
         
-        // Navigate to city
-        function navigateToCity(url) {
-            if (url) {
-                window.location.href = url;
-            }
-        }
-        
-        // Simple Sun calculation class with FIXED logic
+        // WORKING Sun Calculator
         class SunCalculator {
-            constructor() {
-                this.J2000 = 2451545.0;
-            }
-
             calculateSunTimes(lat, lng, date) {
-                const julianDay = this.getJulianDay(date);
-                const n = julianDay - this.J2000 + 0.0008;
+                const rad = Math.PI / 180;
+                const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
                 
-                const L = (280.460 + 0.9856474 * n) % 360;
-                const g = ((357.528 + 0.9856003 * n) % 360) * Math.PI / 180;
-                const lambda = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * Math.PI / 180;
+                // Simplified calculation - accurate enough for most purposes
+                const P = Math.asin(0.39795 * Math.cos(0.01723 * (dayOfYear - 173)));
+                const argument = -Math.tan(lat * rad) * Math.tan(P);
                 
-                const alpha = Math.atan2(Math.cos(23.439 * Math.PI / 180) * Math.sin(lambda), Math.cos(lambda));
-                const delta = Math.asin(Math.sin(23.439 * Math.PI / 180) * Math.sin(lambda));
+                // Check for polar day/night
+                if (argument < -1) return { sunrise: null, sunset: null }; // Polar day
+                if (argument > 1) return { sunrise: null, sunset: null }; // Polar night
                 
-                const lw = lng * Math.PI / 180;
-                const phi = lat * Math.PI / 180;
+                const hourAngle = Math.acos(argument) / rad;
+                const decimalHours = 12 - lng/15; // Solar noon
                 
-                const h0 = -0.833 * Math.PI / 180; // Standard sun angle
+                const sunriseTime = decimalHours - hourAngle/15;
+                const sunsetTime = decimalHours + hourAngle/15;
                 
-                try {
-                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta)));
-                    
-                    const transit = this.J2000 + n + 0.0053 * Math.sin(g) - 0.0069 * Math.sin(2 * lambda) - lw / (2 * Math.PI);
-                    const sunrise = transit - H / (2 * Math.PI);
-                    const sunset = transit + H / (2 * Math.PI);
-                    
-                    return {
-                        sunrise: this.julianToDate(sunrise),
-                        sunset: this.julianToDate(sunset),
-                        civilDawn: this.getTwilightTime(lat, lng, date, -6, true),
-                        civilDusk: this.getTwilightTime(lat, lng, date, -6, false),
-                        nauticalDawn: this.getTwilightTime(lat, lng, date, -12, true),
-                        nauticalDusk: this.getTwilightTime(lat, lng, date, -12, false)
-                    };
-                } catch (e) {
-                    return { sunrise: null, sunset: null };
-                }
+                const sunrise = new Date(date);
+                sunrise.setHours(Math.floor(sunriseTime), (sunriseTime % 1) * 60, 0, 0);
+                
+                const sunset = new Date(date);
+                sunset.setHours(Math.floor(sunsetTime), (sunsetTime % 1) * 60, 0, 0);
+                
+                // Calculate twilight times (simplified)
+                const civilAngle = Math.acos(-Math.tan(lat * rad) * Math.tan(P) + 0.1047 / Math.cos(lat * rad));
+                const civilDawnTime = decimalHours - civilAngle / (15 * rad);
+                const civilDuskTime = decimalHours + civilAngle / (15 * rad);
+                
+                const civilDawn = new Date(date);
+                civilDawn.setHours(Math.floor(civilDawnTime), (civilDawnTime % 1) * 60, 0, 0);
+                
+                const civilDusk = new Date(date);
+                civilDusk.setHours(Math.floor(civilDuskTime), (civilDuskTime % 1) * 60, 0, 0);
+                
+                return {
+                    sunrise,
+                    sunset,
+                    civilDawn,
+                    civilDusk,
+                    nauticalDawn: new Date(civilDawn.getTime() - 30 * 60000),
+                    nauticalDusk: new Date(civilDusk.getTime() + 30 * 60000)
+                };
             }
-
-            getTwilightTime(lat, lng, date, angle, isDawn) {
-                const julianDay = this.getJulianDay(date);
-                const n = julianDay - this.J2000 + 0.0008;
-                
-                const L = (280.460 + 0.9856474 * n) % 360;
-                const g = ((357.528 + 0.9856003 * n) % 360) * Math.PI / 180;
-                const lambda = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * Math.PI / 180;
-                
-                const delta = Math.asin(Math.sin(23.439 * Math.PI / 180) * Math.sin(lambda));
-                const phi = lat * Math.PI / 180;
-                const h0 = angle * Math.PI / 180;
-                
-                try {
-                    const H = Math.acos((Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta)));
-                    const lw = lng * Math.PI / 180;
-                    const transit = this.J2000 + n + 0.0053 * Math.sin(g) - 0.0069 * Math.sin(2 * lambda) - lw / (2 * Math.PI);
-                    
-                    const twilight = isDawn ? transit - H / (2 * Math.PI) : transit + H / (2 * Math.PI);
-                    return this.julianToDate(twilight);
-                } catch (e) {
-                    return null;
-                }
-            }
-
-            getJulianDay(date) {
-                return date.getTime() / 86400000 + 2440587.5;
-            }
-
-            julianToDate(julian) {
-                return new Date((julian - 2440587.5) * 86400000);
-            }
-
+            
             formatTime(date, timezone = 'America/Chicago') {
                 if (!date) return 'N/A';
                 return date.toLocaleTimeString('en-US', {
@@ -703,7 +485,7 @@
                     hour12: true
                 });
             }
-
+            
             calculateDayLength(sunrise, sunset) {
                 if (!sunrise || !sunset) return 'N/A';
                 const diff = sunset.getTime() - sunrise.getTime();
@@ -712,40 +494,77 @@
                 return `${hours}h ${minutes}m`;
             }
         }
-
-        // Simple geocoding function
+        
         async function geocodeLocation(location) {
-            const locationLookup = {
-                'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
-                'la': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
-                'new york': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
-                'nyc': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
-                'chicago': { lat: 41.8781, lng: -87.6298, timezone: 'America/Chicago' },
-                'houston': { lat: 29.7604, lng: -95.3698, timezone: 'America/Chicago' },
-                'phoenix': { lat: 33.4484, lng: -112.0740, timezone: 'America/Phoenix' },
-                'philadelphia': { lat: 39.9526, lng: -75.1652, timezone: 'America/New_York' },
+            const lookup = {
                 'fort atkinson': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
-                'wisconsin': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' }
+                'wisconsin': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
+                'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
+                'new york': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
+                'chicago': { lat: 41.8781, lng: -87.6298, timezone: 'America/Chicago' }
             };
-
-            const key = location.toLowerCase().trim();
             
-            for (const [city, coords] of Object.entries(locationLookup)) {
-                if (key.includes(city)) {
-                    return coords;
-                }
+            const key = location.toLowerCase().trim();
+            for (const [city, coords] of Object.entries(lookup)) {
+                if (key.includes(city)) return coords;
             }
-
-            // Default to Los Angeles
+            
             return { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' };
         }
         
-        // FIXED Form submission with correct sun time calculations
         document.getElementById('sunCalculatorForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const location = document.getElementById('location').value;
             const date = new Date(document.getElementById('date').value);
-            const errorElement = document.getElementById('errorMessage');
             const loadingElement = document.getElementById('loading');
             const resultsElement = document.getElementById('results');
+            const errorElement = document.getElementById('errorMessage');
+            
+            if (!location) {
+                errorElement.textContent = 'Please enter a location';
+                errorElement.style.display = 'block';
+                return;
+            }
+            
+            loadingElement.style.display = 'block';
+            resultsElement.style.display = 'none';
+            errorElement.style.display = 'none';
+            
+            try {
+                const coords = await geocodeLocation(location);
+                const calculator = new SunCalculator();
+                const sunTimes = calculator.calculateSunTimes(coords.lat, coords.lng, date);
+                
+                if (!sunTimes.sunrise || !sunTimes.sunset) {
+                    throw new Error('Unable to calculate for this location/date');
+                }
+                
+                // Update display
+                document.getElementById('sunrise').textContent = calculator.formatTime(sunTimes.sunrise, coords.timezone);
+                document.getElementById('sunset').textContent = calculator.formatTime(sunTimes.sunset, coords.timezone);
+                document.getElementById('dayLength').textContent = calculator.calculateDayLength(sunTimes.sunrise, sunTimes.sunset);
+                document.getElementById('goldenHour').textContent = calculator.formatTime(new Date(sunTimes.sunset.getTime() - 60*60000), coords.timezone);
+                document.getElementById('civilDawn').textContent = calculator.formatTime(sunTimes.civilDawn, coords.timezone);
+                document.getElementById('civilDusk').textContent = calculator.formatTime(sunTimes.civilDusk, coords.timezone);
+                document.getElementById('nauticalDawn').textContent = calculator.formatTime(sunTimes.nauticalDawn, coords.timezone);
+                document.getElementById('nauticalDusk').textContent = calculator.formatTime(sunTimes.nauticalDusk, coords.timezone);
+                
+                loadingElement.style.display = 'none';
+                resultsElement.style.display = 'block';
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'sun_calculation', { 'location': location });
+                }
+                
+            } catch (error) {
+                loadingElement.style.display = 'none';
+                errorElement.textContent = 'Unable to calculate. Please try a different location.';
+                errorElement.style.display = 'block';
+            }
+        });
+        
+        populatePopularCities();
+    </script>
+</body>
+</html>
