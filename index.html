@@ -582,7 +582,7 @@
                 const coords = await geocodeLocation(location);
                 const timezone = selectedTimezone === 'auto' ? coords.timezone : selectedTimezone;
                 const calculator = new SunCalculator();
-                const sunTimes = await calculator.calculateSunTimes(coords.lat, coords.lng, date);
+                const sunTimes = calculator.calculateSunTimes(coords.lat, coords.lng, date);
                 
                 if (!sunTimes.sunrise || !sunTimes.sunset) {
                     throw new Error('Unable to calculate for polar regions or invalid date');
