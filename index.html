@@ -235,11 +235,22 @@
         }
         
         .search-results {
-            display: none;
-            margin-top: 2rem;
-            padding: 2rem;
+            margin-top: 1rem;
+            padding: 1rem;
             background: var(--bg-light);
             border-radius: 12px;
+        }
+        
+        .city-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
         
         @media (max-width: 768px) {
@@ -276,8 +287,9 @@
             <h2 class="search-title">Find Sun Times</h2>
             <p class="search-subtitle">Search for your city below or browse popular locations</p>
             <input type="text" class="search-input" placeholder="Search for a city..." id="citySearch">
-            <div class="search-results" id="searchResults">
-                <p>Type a city name to see results</p>
+            <div class="search-results">
+                <p><strong>Available Cities:</strong> New York, Los Angeles, Chicago, Houston, Phoenix, Philadelphia, Miami, Dallas, San Diego, San Antonio, Austin, Jacksonville, San Francisco, Seattle, Denver, Boston</p>
+                <p><em>Click on any city card below to view detailed information</em></p>
             </div>
         </div>
     </div>
@@ -291,7 +303,7 @@
             </p>
 
             <div class="cities-grid">
-                <div class="city-card">
+                <a href="/cities/new-york-ny" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🗽</div>
                         <div>
@@ -327,9 +339,9 @@
                             <div class="info-value">7:19 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="city-card">
+                <a href="/cities/los-angeles-ca" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🌴</div>
                         <div>
@@ -365,9 +377,9 @@
                             <div class="info-value">7:16 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="city-card">
+                <a href="/cities/chicago-il" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🏙️</div>
                         <div>
@@ -403,9 +415,9 @@
                             <div class="info-value">7:13 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="city-card">
+                <a href="/cities/houston-tx" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🤠</div>
                         <div>
@@ -441,9 +453,9 @@
                             <div class="info-value">7:45 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="city-card">
+                <a href="/cities/phoenix-az" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🌵</div>
                         <div>
@@ -479,9 +491,9 @@
                             <div class="info-value">6:52 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="city-card">
+                <a href="/cities/philadelphia-pa" class="city-card">
                     <div class="city-header">
                         <div class="city-icon">🔔</div>
                         <div>
@@ -517,7 +529,7 @@
                             <div class="info-value">7:24 PM</div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
