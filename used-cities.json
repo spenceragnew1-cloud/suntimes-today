@@ -1,0 +1,34 @@
+{
+  "2025-09-26": [
+    {
+      "name": "London",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "pop": 9648110,
+      "state": "England",
+      "country": "United Kingdom",
+      "key": "London-England-United Kingdom",
+      "timezone": "Europe/London"
+    },
+    {
+      "name": "Sydney",
+      "lat": -33.8688,
+      "lng": 151.2093,
+      "pop": 5312163,
+      "state": "New South Wales",
+      "country": "Australia",
+      "key": "Sydney-New South Wales-Australia",
+      "timezone": "Australia/Sydney"
+    },
+    {
+      "name": "Melbourne",
+      "lat": -37.8136,
+      "lng": 144.9631,
+      "pop": 5078193,
+      "state": "Victoria",
+      "country": "Australia",
+      "key": "Melbourne-Victoria-Australia",
+      "timezone": "Australia/Adelaide"
+    }
+  ]
+}
