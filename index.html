@@ -406,43 +406,42 @@
         // Set today's date as default
         document.getElementById('date').valueAsDate = new Date();
         
-        // Simple Working Sun Calculator
+        // Ultra-Simple Sun Calculator - Basic but Working
         class SunCalculator {
             calculateSunTimes(lat, lng, date) {
-                // Convert to radians
+                // Get day of year
+                const startOfYear = new Date(date.getFullYear(), 0, 1);
+                const dayOfYear = Math.ceil((date - startOfYear) / 86400000) + 1;
+                
+                // Solar declination angle (simplified)
+                const declination = 23.45 * Math.sin((360 * (284 + dayOfYear) / 365) * Math.PI / 180);
+                
+                // Convert latitude to radians
                 const latRad = lat * Math.PI / 180;
+                const decRad = declination * Math.PI / 180;
                 
-                // Day of year
-                const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+                // Hour angle at sunrise/sunset
+                const hourAngle = Math.acos(-Math.tan(latRad) * Math.tan(decRad));
                 
-                // Solar declination
-                const declination = 23.45 * Math.sin((360/365) * (dayOfYear - 81) * Math.PI / 180) * Math.PI / 180;
+                // Convert to decimal hours
+                const hourAngleDecimal = hourAngle * 180 / Math.PI / 15;
                 
-                // Hour angle
-                const hourAngle = Math.acos(-Math.tan(latRad) * Math.tan(declination));
+                // Solar noon is at 12:00, adjust for longitude
+                const solarNoon = 12 - (lng / 15);
                 
-                // Convert to hours
-                const hourAngleHours = hourAngle * 12 / Math.PI;
+                // Calculate sunrise and sunset
+                const sunriseDecimal = solarNoon - hourAngleDecimal;
+                const sunsetDecimal = solarNoon + hourAngleDecimal;
                 
-                // Solar noon (without longitude correction)
-                const solarNoon = 12;
+                // Convert decimal hours to time
+                const sunrise = this.decimalToTime(date, sunriseDecimal);
+                const sunset = this.decimalToTime(date, sunsetDecimal);
                 
-                // Longitude correction in hours (negative lng = west of GMT)
-                const lngCorrection = lng / 15;
-                
-                // Calculate times
-                const sunriseHour = solarNoon - hourAngleHours - lngCorrection;
-                const sunsetHour = solarNoon + hourAngleHours - lngCorrection;
-                
-                // Create date objects
-                const sunrise = this.createTimeFromHours(date, sunriseHour);
-                const sunset = this.createTimeFromHours(date, sunsetHour);
-                
-                // Simple twilight approximations
-                const civilDawn = new Date(sunrise.getTime() - 30 * 60 * 1000);
-                const civilDusk = new Date(sunset.getTime() + 30 * 60 * 1000);
-                const nauticalDawn = new Date(sunrise.getTime() - 60 * 60 * 1000);
-                const nauticalDusk = new Date(sunset.getTime() + 60 * 60 * 1000);
+                // Simple twilight calculations
+                const civilDawn = new Date(sunrise.getTime() - 25 * 60 * 1000);
+                const civilDusk = new Date(sunset.getTime() + 25 * 60 * 1000);
+                const nauticalDawn = new Date(sunrise.getTime() - 50 * 60 * 1000);
+                const nauticalDusk = new Date(sunset.getTime() + 50 * 60 * 1000);
                 
                 return {
                     sunrise,
@@ -454,16 +453,16 @@
                 };
             }
             
-            createTimeFromHours(date, hours) {
-                // Handle negative hours and hours > 24
-                while (hours < 0) hours += 24;
-                while (hours >= 24) hours -= 24;
+            decimalToTime(date, decimal) {
+                // Normalize to 0-24 range
+                while (decimal < 0) decimal += 24;
+                while (decimal >= 24) decimal -= 24;
                 
-                const h = Math.floor(hours);
-                const m = Math.round((hours - h) * 60);
+                const hours = Math.floor(decimal);
+                const minutes = Math.round((decimal - hours) * 60);
                 
                 const result = new Date(date);
-                result.setHours(h, m, 0, 0);
+                result.setHours(hours, minutes, 0, 0);
                 return result;
             }
             
