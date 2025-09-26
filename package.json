@@ -2,12 +2,12 @@
   "name": "sun-times-daily-generator",
   "version": "1.0.0",
   "description": "Automated daily city page generator for sun times website with SEO optimization",
-  "main": "generate-pages.js",
+  "main": "generate-daily-pages.js",
   "scripts": {
-    "build": "node generate-pages.js",
-    "generate": "node generate-pages.js",
+    "build": "node generate-daily-pages.js",
+    "generate": "node generate-daily-pages.js",
     "deploy": "npm run generate && git add . && git commit -m \"Daily sun times update - $(date +%Y-%m-%d)\" && git push origin main",
-    "test": "node -e \"const { CitySelector } = require('./generate-pages.js'); const sel = new CitySelector(); console.log('Test cities:', sel.getDailyCities(3));\""
+    "test": "node -e \"const { CitySelector } = require('./generate-daily-pages.js'); const sel = new CitySelector(); console.log('Test cities:', sel.getDailyCities(3));\""
   },
   "keywords": ["sun times", "sunrise", "sunset", "astronomy", "SEO", "automated content"],
   "author": "Your Name",
