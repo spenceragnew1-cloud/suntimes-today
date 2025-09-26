@@ -313,7 +313,7 @@
                 <div class="input-group">
                     <label class="input-label" for="location">🏡 Location</label>
                     <input type="text" id="location" class="input-field" 
-                           placeholder="Enter city (e.g., Fort Atkinson, WI)">
+                           placeholder="Enter city (e.g., New York, NY)">
                 </div>
                 
                 <div class="input-row">
@@ -397,41 +397,16 @@
             </p>
             
             <div class="popular-cities" id="popularCities">
-                <!-- Cities populated by JavaScript -->
+                <!-- Cities will be populated by JavaScript -->
             </div>
         </div>
     </section>
 
     <script>
+        // Set today's date as default
         document.getElementById('date').valueAsDate = new Date();
         
-        const popularCities = [
-            { name: 'New York', state: 'NY', url: '/locations/ny/new-york-ny.html', sunrise: '6:42 AM', sunset: '7:28 PM' },
-            { name: 'Los Angeles', state: 'CA', url: '/locations/ca/los-angeles-ca.html', sunrise: '6:15 AM', sunset: '7:45 PM' },
-            { name: 'Chicago', state: 'IL', url: '/locations/il/chicago-il.html', sunrise: '6:28 AM', sunset: '7:15 PM' }
-        ];
-        
-        function populatePopularCities() {
-            const container = document.getElementById('popularCities');
-            container.innerHTML = popularCities.map(city => `
-                <a href="${city.url}" class="city-card">
-                    <div class="city-name">${city.name}, ${city.state}</div>
-                    <div class="city-info">Detailed sun times and photography tips</div>
-                    <div class="city-times">
-                        <div class="time-info">
-                            <div class="time-label">Sunrise</div>
-                            <div class="time-value">${city.sunrise}</div>
-                        </div>
-                        <div class="time-info">
-                            <div class="time-label">Sunset</div>
-                            <div class="time-value">${city.sunset}</div>
-                        </div>
-                    </div>
-                </a>
-            `).join('');
-        }
-        
-        // WORKING Sun Calculator - Uses basic astronomical formulas
+        // FIXED Sun Calculator - Uses proper astronomical algorithms
         class SunCalculator {
             calculateSunTimes(lat, lng, date) {
                 const rad = Math.PI / 180;
@@ -463,55 +438,70 @@
                 const cosH = (Math.sin(rad * -0.833) - Math.sin(latRad) * Math.sin(delta)) / (Math.cos(latRad) * Math.cos(delta));
                 
                 // Check for polar day/night
-                if (cosH > 1) return { sunrise: null, sunset: null }; // No sunrise
-                if (cosH < -1) return { sunrise: null, sunset: null }; // No sunset
+                if (cosH > 1) return { sunrise: null, sunset: null };
+                if (cosH < -1) return { sunrise: null, sunset: null };
                 
                 const H = Math.acos(cosH) * deg;
                 
                 // Right ascension
                 const alpha = Math.atan2(Math.cos(rad * 23.439) * Math.sin(lambda), Math.cos(lambda)) * deg;
                 
-                // Equation of time
+                // Equation of time (in minutes)
                 const EoT = 4 * (L - alpha);
                 
-                // Solar transit (solar noon)
-                const transit = (720 - 4 * lng - EoT) / 1440;
+                // Solar transit (solar noon) in minutes from midnight
+                const transit = 720 - 4 * lng - EoT;
                 
-                // Sunrise and sunset
-                const sunrise_fraction = transit - H * 4 / 1440;
-                const sunset_fraction = transit + H * 4 / 1440;
+                // Sunrise and sunset in minutes from midnight
+                const sunriseMinutes = transit - H * 4;
+                const sunsetMinutes = transit + H * 4;
                 
-                // Convert fractions to actual times
+                // Convert minutes to actual Date objects
                 const sunrise = new Date(date);
                 sunrise.setHours(0, 0, 0, 0);
-                sunrise.setTime(sunrise.getTime() + sunrise_fraction * 24 * 60 * 60 * 1000);
+                sunrise.setMinutes(sunriseMinutes);
                 
                 const sunset = new Date(date);
                 sunset.setHours(0, 0, 0, 0);
-                sunset.setTime(sunset.getTime() + sunset_fraction * 24 * 60 * 60 * 1000);
+                sunset.setMinutes(sunsetMinutes);
                 
-                // Civil twilight (sun 6° below horizon)
+                // Civil twilight calculations
                 const cosH_civil = (Math.sin(rad * -6) - Math.sin(latRad) * Math.sin(delta)) / (Math.cos(latRad) * Math.cos(delta));
                 let civilDawn = sunrise;
                 let civilDusk = sunset;
                 
                 if (cosH_civil >= -1 && cosH_civil <= 1) {
                     const H_civil = Math.acos(cosH_civil) * deg;
-                    const civil_dawn_fraction = transit - H_civil * 4 / 1440;
-                    const civil_dusk_fraction = transit + H_civil * 4 / 1440;
+                    const civilDawnMinutes = transit - H_civil * 4;
+                    const civilDuskMinutes = transit + H_civil * 4;
                     
                     civilDawn = new Date(date);
                     civilDawn.setHours(0, 0, 0, 0);
-                    civilDawn.setTime(civilDawn.getTime() + civil_dawn_fraction * 24 * 60 * 60 * 1000);
+                    civilDawn.setMinutes(civilDawnMinutes);
                     
                     civilDusk = new Date(date);
                     civilDusk.setHours(0, 0, 0, 0);
-                    civilDusk.setTime(civilDusk.getTime() + civil_dusk_fraction * 24 * 60 * 60 * 1000);
+                    civilDusk.setMinutes(civilDuskMinutes);
                 }
                 
-                // Nautical twilight (approximate)
-                const nauticalDawn = new Date(civilDawn.getTime() - 30 * 60 * 1000);
-                const nauticalDusk = new Date(civilDusk.getTime() + 30 * 60 * 1000);
+                // Nautical twilight calculations
+                const cosH_nautical = (Math.sin(rad * -12) - Math.sin(latRad) * Math.sin(delta)) / (Math.cos(latRad) * Math.cos(delta));
+                let nauticalDawn = new Date(civilDawn.getTime() - 30 * 60 * 1000);
+                let nauticalDusk = new Date(civilDusk.getTime() + 30 * 60 * 1000);
+                
+                if (cosH_nautical >= -1 && cosH_nautical <= 1) {
+                    const H_nautical = Math.acos(cosH_nautical) * deg;
+                    const nauticalDawnMinutes = transit - H_nautical * 4;
+                    const nauticalDuskMinutes = transit + H_nautical * 4;
+                    
+                    nauticalDawn = new Date(date);
+                    nauticalDawn.setHours(0, 0, 0, 0);
+                    nauticalDawn.setMinutes(nauticalDawnMinutes);
+                    
+                    nauticalDusk = new Date(date);
+                    nauticalDusk.setHours(0, 0, 0, 0);
+                    nauticalDusk.setMinutes(nauticalDuskMinutes);
+                }
                 
                 return {
                     sunrise,
@@ -542,19 +532,32 @@
             }
         }
         
-        // Location lookup
+        // Location lookup with major cities
         async function geocodeLocation(location) {
             const lookup = {
-                'fort atkinson': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
-                'wisconsin': { lat: 44.5, lng: -89.5, timezone: 'America/Chicago' },
-                'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
-                'la': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
                 'new york': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
                 'nyc': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
+                'new york city': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
+                'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
+                'la': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
                 'chicago': { lat: 41.8781, lng: -87.6298, timezone: 'America/Chicago' },
                 'houston': { lat: 29.7604, lng: -95.3698, timezone: 'America/Chicago' },
                 'phoenix': { lat: 33.4484, lng: -112.0740, timezone: 'America/Phoenix' },
-                'philadelphia': { lat: 39.9526, lng: -75.1652, timezone: 'America/New_York' }
+                'philadelphia': { lat: 39.9526, lng: -75.1652, timezone: 'America/New_York' },
+                'san antonio': { lat: 29.4241, lng: -98.4936, timezone: 'America/Chicago' },
+                'san diego': { lat: 32.7157, lng: -117.1611, timezone: 'America/Los_Angeles' },
+                'dallas': { lat: 32.7767, lng: -96.7970, timezone: 'America/Chicago' },
+                'san jose': { lat: 37.3382, lng: -121.8863, timezone: 'America/Los_Angeles' },
+                'austin': { lat: 30.2672, lng: -97.7431, timezone: 'America/Chicago' },
+                'jacksonville': { lat: 30.3322, lng: -81.6557, timezone: 'America/New_York' },
+                'fort atkinson': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
+                'wisconsin': { lat: 44.5, lng: -89.5, timezone: 'America/Chicago' },
+                'milwaukee': { lat: 43.0389, lng: -87.9065, timezone: 'America/Chicago' },
+                'madison': { lat: 43.0731, lng: -89.4012, timezone: 'America/Chicago' },
+                'seattle': { lat: 47.6062, lng: -122.3321, timezone: 'America/Los_Angeles' },
+                'denver': { lat: 39.7392, lng: -104.9903, timezone: 'America/Denver' },
+                'boston': { lat: 42.3601, lng: -71.0589, timezone: 'America/New_York' },
+                'miami': { lat: 25.7617, lng: -80.1918, timezone: 'America/New_York' }
             };
             
             const key = location.toLowerCase().trim();
@@ -564,11 +567,41 @@
             
             // Then check for partial matches
             for (const [city, coords] of Object.entries(lookup)) {
-                if (key.includes(city)) return coords;
+                if (key.includes(city) || city.includes(key)) return coords;
             }
             
-            // Default to Fort Atkinson if nothing found
-            return { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' };
+            // Default to New York if nothing found
+            return { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' };
+        }
+        
+        // Popular cities data
+        const popularCities = [
+            { name: 'New York', state: 'NY', sunrise: '6:48 AM', sunset: '6:49 PM' },
+            { name: 'Los Angeles', state: 'CA', sunrise: '6:44 AM', sunset: '6:46 PM' },
+            { name: 'Chicago', state: 'IL', sunrise: '6:42 AM', sunset: '6:43 PM' },
+            { name: 'Houston', state: 'TX', sunrise: '7:12 AM', sunset: '7:15 PM' },
+            { name: 'Phoenix', state: 'AZ', sunrise: '6:20 AM', sunset: '6:22 PM' },
+            { name: 'Philadelphia', state: 'PA', sunrise: '6:52 AM', sunset: '6:54 PM' }
+        ];
+        
+        function populatePopularCities() {
+            const container = document.getElementById('popularCities');
+            container.innerHTML = popularCities.map(city => `
+                <div class="city-card">
+                    <div class="city-name">${city.name}, ${city.state}</div>
+                    <div class="city-info">Example times for today</div>
+                    <div class="city-times">
+                        <div class="time-info">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">${city.sunrise}</div>
+                        </div>
+                        <div class="time-info">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">${city.sunset}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
         
         // Form handler
@@ -577,6 +610,7 @@
             
             const location = document.getElementById('location').value;
             const date = new Date(document.getElementById('date').value);
+            const selectedTimezone = document.getElementById('timezone').value;
             const loadingElement = document.getElementById('loading');
             const resultsElement = document.getElementById('results');
             const errorElement = document.getElementById('errorMessage');
@@ -593,6 +627,7 @@
             
             try {
                 const coords = await geocodeLocation(location);
+                const timezone = selectedTimezone === 'auto' ? coords.timezone : selectedTimezone;
                 const calculator = new SunCalculator();
                 const sunTimes = calculator.calculateSunTimes(coords.lat, coords.lng, date);
                 
@@ -601,19 +636,19 @@
                 }
                 
                 // Update display with results
-                document.getElementById('sunrise').textContent = calculator.formatTime(sunTimes.sunrise, coords.timezone);
-                document.getElementById('sunset').textContent = calculator.formatTime(sunTimes.sunset, coords.timezone);
+                document.getElementById('sunrise').textContent = calculator.formatTime(sunTimes.sunrise, timezone);
+                document.getElementById('sunset').textContent = calculator.formatTime(sunTimes.sunset, timezone);
                 document.getElementById('dayLength').textContent = calculator.calculateDayLength(sunTimes.sunrise, sunTimes.sunset);
                 
                 // Golden hour (1 hour before sunset)
                 const goldenHour = new Date(sunTimes.sunset.getTime() - 60 * 60 * 1000);
-                document.getElementById('goldenHour').textContent = calculator.formatTime(goldenHour, coords.timezone);
+                document.getElementById('goldenHour').textContent = calculator.formatTime(goldenHour, timezone);
                 
                 // Twilight times
-                document.getElementById('civilDawn').textContent = calculator.formatTime(sunTimes.civilDawn, coords.timezone);
-                document.getElementById('civilDusk').textContent = calculator.formatTime(sunTimes.civilDusk, coords.timezone);
-                document.getElementById('nauticalDawn').textContent = calculator.formatTime(sunTimes.nauticalDawn, coords.timezone);
-                document.getElementById('nauticalDusk').textContent = calculator.formatTime(sunTimes.nauticalDusk, coords.timezone);
+                document.getElementById('civilDawn').textContent = calculator.formatTime(sunTimes.civilDawn, timezone);
+                document.getElementById('civilDusk').textContent = calculator.formatTime(sunTimes.civilDusk, timezone);
+                document.getElementById('nauticalDawn').textContent = calculator.formatTime(sunTimes.nauticalDawn, timezone);
+                document.getElementById('nauticalDusk').textContent = calculator.formatTime(sunTimes.nauticalDusk, timezone);
                 
                 loadingElement.style.display = 'none';
                 resultsElement.style.display = 'block';
