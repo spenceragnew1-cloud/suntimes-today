@@ -3,18 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sun Times Calculator - Accurate Sunrise & Sunset Times for Any Location</title>
-    <meta name="description" content="Calculate precise sunrise and sunset times for any location worldwide. Get golden hour times, twilight information, and day length data. Free online sun calculator.">
+    <title>Sun Times Calculator - Accurate Sunrise & Sunset Times</title>
+    <meta name="description" content="Find accurate sunrise and sunset times for major US cities. Daily updated sun times, golden hour information, and twilight data.">
     <meta name="keywords" content="sunrise calculator, sunset times, sun calculator, golden hour, twilight times, day length">
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB05P3YGD8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ZB05P3YGD8');
-    </script>
     
     <style>
         :root {
@@ -77,7 +68,7 @@
             opacity: 0.9;
         }
         
-        .calculator-card {
+        .search-card {
             background: white;
             border-radius: 20px;
             padding: 3rem;
@@ -86,105 +77,38 @@
             box-shadow: var(--shadow-lg);
             position: relative;
             z-index: 10;
-        }
-        
-        .calculator-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 2rem;
             text-align: center;
         }
         
-        .input-group { margin-bottom: 1.5rem; }
-        
-        .input-label {
-            display: block;
-            font-weight: 600;
+        .search-title {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--text);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
         
-        .input-field {
+        .search-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .search-input {
             width: 100%;
+            max-width: 400px;
             padding: 1rem 1.25rem;
             border: 2px solid var(--border);
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
+            margin-bottom: 1rem;
         }
         
-        .input-field:focus {
+        .search-input:focus {
             outline: none;
             border-color: var(--primary);
-            background: white;
             box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
         }
         
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .calculate-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            border: none;
-            padding: 1.25rem 2rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .calculate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        
-        .results-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            display: none;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .result-card {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        
-        .result-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-        
-        .result-label {
-            font-weight: 600;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .result-value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .city-navigation {
+        .cities-section {
             background: var(--bg-light);
             padding: 4rem 0;
         }
@@ -207,11 +131,11 @@
             margin-right: auto;
         }
         
-        .popular-cities {
+        .cities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
@@ -220,75 +144,117 @@
             padding: 2rem;
             border-radius: 16px;
             box-shadow: var(--shadow);
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
             border: 1px solid var(--border);
+            transition: transform 0.3s ease;
         }
         
         .city-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            text-decoration: none;
+        }
+        
+        .city-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .city-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 1rem;
         }
         
         .city-name {
             font-size: 1.4rem;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+            color: var(--text);
         }
         
-        .city-info {
+        .city-state {
             color: var(--text-light);
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         
-        .city-times {
+        .sun-times {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
         
-        .time-info {
-            text-align: center;
-            padding: 0.75rem;
+        .time-box {
             background: var(--bg-light);
+            padding: 1rem;
             border-radius: 8px;
+            text-align: center;
         }
         
         .time-label {
             font-size: 0.8rem;
             color: var(--text-light);
             margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .time-value {
+            font-size: 1.1rem;
             font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .info-item {
+            text-align: center;
+        }
+        
+        .info-label {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+        
+        .info-value {
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--text);
         }
         
-        .error-message {
-            color: #EF4444;
-            background: #FEF2F2;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+        .search-results {
             display: none;
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
+            margin-top: 2rem;
             padding: 2rem;
-            color: var(--primary);
-            font-weight: 600;
+            background: var(--bg-light);
+            border-radius: 12px;
         }
         
         @media (max-width: 768px) {
-            .input-row { grid-template-columns: 1fr; }
-            .results-grid { grid-template-columns: 1fr 1fr; }
-            .city-times { grid-template-columns: 1fr; }
+            .cities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .sun-times {
+                grid-template-columns: 1fr;
+            }
+            
+            .additional-info {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
@@ -296,331 +262,264 @@
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">🌅 Sun Times Calculator</h1>
+                <h1 class="hero-title">Sun Times Today</h1>
                 <p class="hero-subtitle">
-                    Get accurate sunrise and sunset times for any location worldwide. 
-                    Perfect for photography, outdoor activities, and planning your day.
+                    Get accurate sunrise and sunset times for major US cities. 
+                    Updated daily with precise astronomical calculations.
                 </p>
             </div>
         </div>
     </section>
 
     <div class="container">
-        <div class="calculator-card">
-            <h2 class="calculator-title">Calculate Sun Times for Any Location</h2>
-            
-            <form id="sunCalculatorForm">
-                <div class="input-group">
-                    <label class="input-label" for="location">🏡 Location</label>
-                    <input type="text" id="location" class="input-field" 
-                           placeholder="Enter city (e.g., New York, NY)">
-                </div>
-                
-                <div class="input-row">
-                    <div class="input-group">
-                        <label class="input-label" for="date">📅 Date</label>
-                        <input type="date" id="date" class="input-field">
-                    </div>
-                    <div class="input-group">
-                        <label class="input-label" for="timezone">🌍 Timezone</label>
-                        <select id="timezone" class="input-field">
-                            <option value="auto">Auto-detect</option>
-                            <option value="America/New_York">Eastern Time</option>
-                            <option value="America/Chicago">Central Time</option>
-                            <option value="America/Denver">Mountain Time</option>
-                            <option value="America/Los_Angeles">Pacific Time</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button type="submit" class="calculate-btn">✨ Calculate Sun Times</button>
-            </form>
-
-            <div class="loading" id="loading">Calculating sun times...</div>
-            <div class="error-message" id="errorMessage"></div>
-
-            <div class="results-section" id="results">
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="result-icon">🌅</div>
-                        <div class="result-label">Sunrise</div>
-                        <div class="result-value" id="sunrise">--:--</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">🌇</div>
-                        <div class="result-label">Sunset</div>
-                        <div class="result-value" id="sunset">--:--</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">📐</div>
-                        <div class="result-label">Day Length</div>
-                        <div class="result-value" id="dayLength">-- hrs</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">✨</div>
-                        <div class="result-label">Golden Hour</div>
-                        <div class="result-value" id="goldenHour">--:--</div>
-                    </div>
-                </div>
-                
-                <div class="results-grid">
-                    <div class="result-card">
-                        <div class="result-icon">🌄</div>
-                        <div class="result-label">Civil Dawn</div>
-                        <div class="result-value" id="civilDawn">--:--</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">🌆</div>
-                        <div class="result-label">Civil Dusk</div>
-                        <div class="result-value" id="civilDusk">--:--</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">⭐</div>
-                        <div class="result-label">Nautical Dawn</div>
-                        <div class="result-value" id="nauticalDawn">--:--</div>
-                    </div>
-                    <div class="result-card">
-                        <div class="result-icon">🌌</div>
-                        <div class="result-label">Nautical Dusk</div>
-                        <div class="result-value" id="nauticalDusk">--:--</div>
-                    </div>
-                </div>
+        <div class="search-card">
+            <h2 class="search-title">Find Sun Times</h2>
+            <p class="search-subtitle">Search for your city below or browse popular locations</p>
+            <input type="text" class="search-input" placeholder="Search for a city..." id="citySearch">
+            <div class="search-results" id="searchResults">
+                <p>Type a city name to see results</p>
             </div>
         </div>
     </div>
 
-    <section class="city-navigation">
+    <section class="cities-section">
         <div class="container">
-            <h2 class="section-title">Popular Cities</h2>
+            <h2 class="section-title">Today's Sun Times</h2>
             <p class="section-subtitle">
-                Quick access to sun times for major cities with detailed photography tips.
+                Current sunrise and sunset times for major US cities. 
+                All times shown in local timezone.
             </p>
-            
-            <div class="popular-cities" id="popularCities">
-                <!-- Cities will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
 
-    <script>
-        // Set today's date as default
-        document.getElementById('date').valueAsDate = new Date();
-        
-        // Ultra-Simple Sun Calculator - Basic but Working
-        class SunCalculator {
-            calculateSunTimes(lat, lng, date) {
-                // Get day of year
-                const startOfYear = new Date(date.getFullYear(), 0, 1);
-                const dayOfYear = Math.ceil((date - startOfYear) / 86400000) + 1;
-                
-                // Solar declination angle (simplified)
-                const declination = 23.45 * Math.sin((360 * (284 + dayOfYear) / 365) * Math.PI / 180);
-                
-                // Convert latitude to radians
-                const latRad = lat * Math.PI / 180;
-                const decRad = declination * Math.PI / 180;
-                
-                // Hour angle at sunrise/sunset
-                const hourAngle = Math.acos(-Math.tan(latRad) * Math.tan(decRad));
-                
-                // Convert to decimal hours
-                const hourAngleDecimal = hourAngle * 180 / Math.PI / 15;
-                
-                // Solar noon is at 12:00, adjust for longitude
-                const solarNoon = 12 - (lng / 15);
-                
-                // Calculate sunrise and sunset
-                const sunriseDecimal = solarNoon - hourAngleDecimal;
-                const sunsetDecimal = solarNoon + hourAngleDecimal;
-                
-                // Convert decimal hours to time
-                const sunrise = this.decimalToTime(date, sunriseDecimal);
-                const sunset = this.decimalToTime(date, sunsetDecimal);
-                
-                // Simple twilight calculations
-                const civilDawn = new Date(sunrise.getTime() - 25 * 60 * 1000);
-                const civilDusk = new Date(sunset.getTime() + 25 * 60 * 1000);
-                const nauticalDawn = new Date(sunrise.getTime() - 50 * 60 * 1000);
-                const nauticalDusk = new Date(sunset.getTime() + 50 * 60 * 1000);
-                
-                return {
-                    sunrise,
-                    sunset,
-                    civilDawn,
-                    civilDusk,
-                    nauticalDawn,
-                    nauticalDusk
-                };
-            }
-            
-            decimalToTime(date, decimal) {
-                // Normalize to 0-24 range
-                while (decimal < 0) decimal += 24;
-                while (decimal >= 24) decimal -= 24;
-                
-                const hours = Math.floor(decimal);
-                const minutes = Math.round((decimal - hours) * 60);
-                
-                const result = new Date(date);
-                result.setHours(hours, minutes, 0, 0);
-                return result;
-            }
-            
-            formatTime(date, timezone = 'America/Chicago') {
-                if (!date || isNaN(date.getTime())) return 'N/A';
-                return date.toLocaleTimeString('en-US', {
-                    timeZone: timezone,
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true
-                });
-            }
-            
-            calculateDayLength(sunrise, sunset) {
-                if (!sunrise || !sunset || isNaN(sunrise.getTime()) || isNaN(sunset.getTime())) return 'N/A';
-                const diff = sunset.getTime() - sunrise.getTime();
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                return `${hours}h ${minutes}m`;
-            }
-        }
-        
-        // Location lookup with major cities
-        async function geocodeLocation(location) {
-            const lookup = {
-                'new york': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
-                'nyc': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
-                'new york city': { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' },
-                'los angeles': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
-                'la': { lat: 34.0522, lng: -118.2437, timezone: 'America/Los_Angeles' },
-                'chicago': { lat: 41.8781, lng: -87.6298, timezone: 'America/Chicago' },
-                'houston': { lat: 29.7604, lng: -95.3698, timezone: 'America/Chicago' },
-                'phoenix': { lat: 33.4484, lng: -112.0740, timezone: 'America/Phoenix' },
-                'philadelphia': { lat: 39.9526, lng: -75.1652, timezone: 'America/New_York' },
-                'san antonio': { lat: 29.4241, lng: -98.4936, timezone: 'America/Chicago' },
-                'san diego': { lat: 32.7157, lng: -117.1611, timezone: 'America/Los_Angeles' },
-                'dallas': { lat: 32.7767, lng: -96.7970, timezone: 'America/Chicago' },
-                'san jose': { lat: 37.3382, lng: -121.8863, timezone: 'America/Los_Angeles' },
-                'austin': { lat: 30.2672, lng: -97.7431, timezone: 'America/Chicago' },
-                'jacksonville': { lat: 30.3322, lng: -81.6557, timezone: 'America/New_York' },
-                'fort atkinson': { lat: 42.9289, lng: -88.8370, timezone: 'America/Chicago' },
-                'wisconsin': { lat: 44.5, lng: -89.5, timezone: 'America/Chicago' },
-                'milwaukee': { lat: 43.0389, lng: -87.9065, timezone: 'America/Chicago' },
-                'madison': { lat: 43.0731, lng: -89.4012, timezone: 'America/Chicago' },
-                'seattle': { lat: 47.6062, lng: -122.3321, timezone: 'America/Los_Angeles' },
-                'denver': { lat: 39.7392, lng: -104.9903, timezone: 'America/Denver' },
-                'boston': { lat: 42.3601, lng: -71.0589, timezone: 'America/New_York' },
-                'miami': { lat: 25.7617, lng: -80.1918, timezone: 'America/New_York' }
-            };
-            
-            const key = location.toLowerCase().trim();
-            
-            // Check for exact matches first
-            if (lookup[key]) return lookup[key];
-            
-            // Then check for partial matches
-            for (const [city, coords] of Object.entries(lookup)) {
-                if (key.includes(city) || city.includes(key)) return coords;
-            }
-            
-            // Default to New York if nothing found
-            return { lat: 40.7128, lng: -74.0060, timezone: 'America/New_York' };
-        }
-        
-        // Popular cities data
-        const popularCities = [
-            { name: 'New York', state: 'NY', sunrise: '6:48 AM', sunset: '6:49 PM' },
-            { name: 'Los Angeles', state: 'CA', sunrise: '6:44 AM', sunset: '6:46 PM' },
-            { name: 'Chicago', state: 'IL', sunrise: '6:42 AM', sunset: '6:43 PM' },
-            { name: 'Houston', state: 'TX', sunrise: '7:12 AM', sunset: '7:15 PM' },
-            { name: 'Phoenix', state: 'AZ', sunrise: '6:20 AM', sunset: '6:22 PM' },
-            { name: 'Philadelphia', state: 'PA', sunrise: '6:52 AM', sunset: '6:54 PM' }
-        ];
-        
-        function populatePopularCities() {
-            const container = document.getElementById('popularCities');
-            container.innerHTML = popularCities.map(city => `
+            <div class="cities-grid">
                 <div class="city-card">
-                    <div class="city-name">${city.name}, ${city.state}</div>
-                    <div class="city-info">Example times for today</div>
-                    <div class="city-times">
-                        <div class="time-info">
-                            <div class="time-label">Sunrise</div>
-                            <div class="time-value">${city.sunrise}</div>
+                    <div class="city-header">
+                        <div class="city-icon">🗽</div>
+                        <div>
+                            <div class="city-name">New York City</div>
+                            <div class="city-state">New York</div>
                         </div>
-                        <div class="time-info">
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">6:48 AM</div>
+                        </div>
+                        <div class="time-box">
                             <div class="time-label">Sunset</div>
-                            <div class="time-value">${city.sunset}</div>
+                            <div class="time-value">6:49 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 1m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">5:49 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">6:18 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">7:19 PM</div>
                         </div>
                     </div>
                 </div>
-            `).join('');
-        }
-        
-        // Form handler
-        document.getElementById('sunCalculatorForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const location = document.getElementById('location').value;
-            const date = new Date(document.getElementById('date').value);
-            const selectedTimezone = document.getElementById('timezone').value;
-            const loadingElement = document.getElementById('loading');
-            const resultsElement = document.getElementById('results');
-            const errorElement = document.getElementById('errorMessage');
-            
-            if (!location) {
-                errorElement.textContent = 'Please enter a location';
-                errorElement.style.display = 'block';
-                return;
-            }
-            
-            loadingElement.style.display = 'block';
-            resultsElement.style.display = 'none';
-            errorElement.style.display = 'none';
-            
-            try {
-                const coords = await geocodeLocation(location);
-                const timezone = selectedTimezone === 'auto' ? coords.timezone : selectedTimezone;
-                const calculator = new SunCalculator();
-                const sunTimes = calculator.calculateSunTimes(coords.lat, coords.lng, date);
-                
-                if (!sunTimes.sunrise || !sunTimes.sunset) {
-                    throw new Error('Unable to calculate for polar regions or invalid date');
-                }
-                
-                // Update display with results
-                document.getElementById('sunrise').textContent = calculator.formatTime(sunTimes.sunrise, timezone);
-                document.getElementById('sunset').textContent = calculator.formatTime(sunTimes.sunset, timezone);
-                document.getElementById('dayLength').textContent = calculator.calculateDayLength(sunTimes.sunrise, sunTimes.sunset);
-                
-                // Golden hour (1 hour before sunset)
-                const goldenHour = new Date(sunTimes.sunset.getTime() - 60 * 60 * 1000);
-                document.getElementById('goldenHour').textContent = calculator.formatTime(goldenHour, timezone);
-                
-                // Twilight times
-                document.getElementById('civilDawn').textContent = calculator.formatTime(sunTimes.civilDawn, timezone);
-                document.getElementById('civilDusk').textContent = calculator.formatTime(sunTimes.civilDusk, timezone);
-                document.getElementById('nauticalDawn').textContent = calculator.formatTime(sunTimes.nauticalDawn, timezone);
-                document.getElementById('nauticalDusk').textContent = calculator.formatTime(sunTimes.nauticalDusk, timezone);
-                
-                loadingElement.style.display = 'none';
-                resultsElement.style.display = 'block';
-                
-                // Analytics tracking
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'sun_calculation', { 'location': location });
-                }
-                
-            } catch (error) {
-                console.error('Calculator error:', error);
-                loadingElement.style.display = 'none';
-                errorElement.textContent = 'Unable to calculate sun times. Please try a different location.';
-                errorElement.style.display = 'block';
-            }
-        });
-        
-        // Initialize
-        populatePopularCities();
-    </script>
+
+                <div class="city-card">
+                    <div class="city-header">
+                        <div class="city-icon">🌴</div>
+                        <div>
+                            <div class="city-name">Los Angeles</div>
+                            <div class="city-state">California</div>
+                        </div>
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">6:44 AM</div>
+                        </div>
+                        <div class="time-box">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">6:46 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 2m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">5:46 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">6:14 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">7:16 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <div class="city-header">
+                        <div class="city-icon">🏙️</div>
+                        <div>
+                            <div class="city-name">Chicago</div>
+                            <div class="city-state">Illinois</div>
+                        </div>
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">6:42 AM</div>
+                        </div>
+                        <div class="time-box">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">6:43 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 1m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">5:43 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">6:12 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">7:13 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <div class="city-header">
+                        <div class="city-icon">🤠</div>
+                        <div>
+                            <div class="city-name">Houston</div>
+                            <div class="city-state">Texas</div>
+                        </div>
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">7:12 AM</div>
+                        </div>
+                        <div class="time-box">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">7:15 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 3m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">6:15 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">6:42 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">7:45 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <div class="city-header">
+                        <div class="city-icon">🌵</div>
+                        <div>
+                            <div class="city-name">Phoenix</div>
+                            <div class="city-state">Arizona</div>
+                        </div>
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">6:20 AM</div>
+                        </div>
+                        <div class="time-box">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">6:22 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 2m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">5:22 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">5:50 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">6:52 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <div class="city-header">
+                        <div class="city-icon">🔔</div>
+                        <div>
+                            <div class="city-name">Philadelphia</div>
+                            <div class="city-state">Pennsylvania</div>
+                        </div>
+                    </div>
+                    <div class="sun-times">
+                        <div class="time-box">
+                            <div class="time-label">Sunrise</div>
+                            <div class="time-value">6:52 AM</div>
+                        </div>
+                        <div class="time-box">
+                            <div class="time-label">Sunset</div>
+                            <div class="time-value">6:54 PM</div>
+                        </div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="info-item">
+                            <div class="info-label">Day Length</div>
+                            <div class="info-value">12h 2m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Golden Hour</div>
+                            <div class="info-value">5:54 PM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dawn</div>
+                            <div class="info-value">6:22 AM</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Civil Dusk</div>
+                            <div class="info-value">7:24 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
