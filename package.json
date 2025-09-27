@@ -1,15 +1,21 @@
 {
   "name": "sun-times-daily-generator",
   "version": "1.0.0",
-  "description": "Automated daily city page generator for sun times website with SEO optimization",
+  "description": "Automated daily city page generator for sun times website with real API data and SEO optimization",
   "main": "generate-daily-pages.js",
   "scripts": {
     "build": "node generate-daily-pages.js",
     "generate": "node generate-daily-pages.js",
-    "deploy": "npm run generate && git add . && git commit -m \"Daily sun times update - $(date +%Y-%m-%d)\" && git push origin main",
-    "test": "node -e \"const { CitySelector } = require('./generate-daily-pages.js'); const sel = new CitySelector(); console.log('Test cities:', sel.getDailyCities(3));\""
+    "test": "node -e \"const { SimpleDailyGenerator } = require('./generate-daily-pages.js'); const gen = new SimpleDailyGenerator(); gen.getCitiesToAdd(3).then(cities => console.log('Test cities:', cities));\"",
+    "deploy": "npm run generate && git add . && git commit -m \"Daily sun times update - $(date +%Y-%m-%d)\" && git push origin main"
   },
-  "keywords": ["sun times", "sunrise", "sunset", "astronomy", "SEO", "automated content"],
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "keywords": ["sun times", "sunrise", "sunset", "astronomy", "SEO", "automated content", "daily generator"],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

@@ -1,0 +1,59 @@
+name: Daily Sun Times Generator
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC (adjust timezone as needed)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual triggering for testing
+
+jobs:
+  generate-pages:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: |
+        # Add node-fetch for API calls
+        npm init -y
+        npm install node-fetch@2
+    
+    - name: Generate daily sun times pages
+      run: |
+        node generate-daily-pages.js
+    
+    - name: Configure Git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Sun Times Bot"
+    
+    - name: Commit and push changes
+      run: |
+        git add .
+        
+        # Check if there are changes to commit
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Changes detected, committing..."
+          git commit -m "Daily sun times update - $(date -u +%Y-%m-%d)"
+          git push
+          echo "✅ Successfully generated and deployed new pages"
+        else
+          echo "ℹ️ No changes to commit"
+        fi
+    
+    - name: Deployment summary
+      run: |
+        echo "## Daily Generation Complete! 🌅" >> $GITHUB_STEP_SUMMARY
+        echo "Generated on: $(date -u)" >> $GITHUB_STEP_SUMMARY
+        echo "New pages created for today's date" >> $GITHUB_STEP_SUMMARY
+        echo "Sitemap automatically updated" >> $GITHUB_STEP_SUMMARY
