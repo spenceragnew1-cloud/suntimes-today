@@ -11,29 +11,28 @@ permissions:
 jobs:
   generate-pages:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-    
+
     - name: Install dependencies
       run: |
-        npm init -y
-        npm install node-fetch@2
-    
+        npm install
+
     - name: Generate daily sun times pages
       run: |
         echo "Starting daily page generation..."
         node generate-daily-pages.js
         echo "Page generation complete!"
-    
+
     - name: Check for changes
       id: check_changes
       run: |
@@ -44,13 +43,13 @@ jobs:
           echo "changes=false" >> $GITHUB_OUTPUT
           echo "No changes to commit"
         fi
-    
+
     - name: Configure Git
       if: steps.check_changes.outputs.changes == 'true'
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Sun Times Bot"
-    
+
     - name: Commit and push changes
       if: steps.check_changes.outputs.changes == 'true'
       run: |
