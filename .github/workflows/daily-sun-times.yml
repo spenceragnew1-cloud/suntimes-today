@@ -1,4 +1,4 @@
-yamlname: Daily Sun Times Generator
+name: Daily Sun Times Generator
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # Add this line for write permissions
+  contents: write
 
 jobs:
   generate-pages:
@@ -25,36 +25,36 @@ jobs:
     
     - name: Install dependencies
       run: |
-        # Add node-fetch for API calls
         npm init -y
         npm install node-fetch@2
     
     - name: Generate daily sun times pages
       run: |
+        echo "Starting daily page generation..."
         node generate-daily-pages.js
+        echo "Page generation complete!"
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "Changes detected in repository"
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No changes to commit"
+        fi
     
     - name: Configure Git
+      if: steps.check_changes.outputs.changes == 'true'
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Sun Times Bot"
     
     - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
       run: |
         git add .
-        
-        # Check if there are changes to commit
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "Changes detected, committing..."
-          git commit -m "Daily sun times update - $(date -u +%Y-%m-%d)"
-          git push
-          echo "✅ Successfully generated and deployed new pages"
-        else
-          echo "ℹ️ No changes to commit"
-        fi
-    
-    - name: Deployment summary
-      run: |
-        echo "## Daily Generation Complete! 🌅" >> $GITHUB_STEP_SUMMARY
-        echo "Generated on: $(date -u)" >> $GITHUB_STEP_SUMMARY
-        echo "New pages created for today's date" >> $GITHUB_STEP_SUMMARY
-        echo "Sitemap automatically updated" >> $GITHUB_STEP_SUMMARY
+        git commit -m "Daily sun times update - $(date -u +%Y-%m-%d)"
+        git push
+        echo "Successfully generated and deployed new pages"
