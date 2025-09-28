@@ -1,10 +1,12 @@
-name: Daily Sun Times Generator
+yamlname: Daily Sun Times Generator
 
 on:
   schedule:
-    # Run daily at 6:00 AM UTC (adjust timezone as needed)
     - cron: '0 6 * * *'
-  workflow_dispatch: # Allows manual triggering for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Add this line for write permissions
 
 jobs:
   generate-pages:
@@ -14,7 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Setup Node.js
